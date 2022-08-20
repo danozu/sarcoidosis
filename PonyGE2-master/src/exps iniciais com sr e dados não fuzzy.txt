@@ -1,0 +1,283 @@
+estimators = []
+        estimators.append(('ponyGE', ponyge(RANDOM_SEED=seed)))
+        model = Pipeline(estimators)
+
+        param_grid = {
+            'ponyGE__GENERATIONS': [10, 50, 100, 200, 500],
+            'ponyGE__POPULATION_SIZE': [100, 200, 500]
+            
+        }
+
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.862500 using {'ponyGE__GENERATIONS': 10, 'ponyGE__POPULATION_SIZE': 100}
+Best: 0.928333 using {'ponyGE__GENERATIONS': 500, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.909167 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.875833 using {'ponyGE__GENERATIONS': 500, 'ponyGE__POPULATION_SIZE': 500}
+Best: 0.908333 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 500}
+Best: 0.845833 using {'ponyGE__GENERATIONS': 500, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.907500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.916667 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Best: 0.937500 using {'ponyGE__GENERATIONS': 10, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.908333 using {'ponyGE__GENERATIONS': 500, 'ponyGE__POPULATION_SIZE': 500}
+AUC = 0.7429787234042553
+                SensLevel0          SensLevel1  ...  SpeCI_lo  SpeCI_hi
+ponyGE  0.2553191489361702  0.5319148936170213  ...  0.543992  0.896008
+
+[1 rows x 12 columns]
+Elapsed time:  10812.190080404282
+
+
+
+param_grid = {
+            'ponyGE__GENERATIONS': [50, 100, 200],
+            'ponyGE__POPULATION_SIZE': [100, 200, 500, 1000, 3000]
+            
+        }
+
+[8 rows x 50 columns]
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.813333 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 100}
+Best: 0.895000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 100}
+Best: 0.917500 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.925000 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 1000}
+Best: 0.920833 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 500}
+Best: 0.935000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.907500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 200}
+Best: 0.945833 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}
+Best: 0.938333 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Best: 0.958333 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}
+AUC = 0.7540425531914894
+                SensLevel0          SensLevel1  ...  SpeCI_lo  SpeCI_hi
+ponyGE  0.2978723404255319  0.4148936170212766  ...  0.497141  0.862859
+
+[1 rows x 12 columns]
+Elapsed time:  37528.94276380539
+
+
+
+steam 248
+origin 15
+epic 18
+age 31
+dish 40
+forza 77
+surviving 7
+tow 38
+
+<e> ::= <op>(<e>, <e>) | x[<idx>] | <c>)
+<op> ::= add | mul | sub | pdiv
+<idx> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+<c> ::= 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9
+
+param_grid = {
+            'ponyGE__GENERATIONS': [50, 100, 200],
+            'ponyGE__POPULATION_SIZE': [100, 200, 500, 1000, 3000]
+            
+        }
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.965000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}
+Final Individual: add(x[9], add(mul(sub(0.6, mul(x[8], x[9])), mul(sub(x[3], x[13]), sub(x[9], x[12]))), 0.2)
+Best: 0.921667 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}
+Final Individual: pdiv(mul(mul(x[10], mul(x[9], 0.9)), sub(0.2, pdiv(sub(0.3, x[12]), add(0.3, x[9])))), x[10]
+Best: 0.924167 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: add(0.6, add(pdiv(x[9], x[13]), add(pdiv(pdiv(x[9], 0.4), add(0.8, pdiv(x[9], x[13]))), add(0.3, add(add(x[7], 0.7), add(x[9], mul(add(x[11], pdiv(x[3], pdiv(x[13], add(0.1, mul(pdiv(0.7, x[1]), x[8]))))), add(0.8, x[10])))))))
+Best: 0.921667 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(add(sub(add(x[9], 0.4), x[0]), x[13]), pdiv(0.2, pdiv(0.8, x[7]))
+Best: 0.895833 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: mul(x[9], add(0.6, sub(x[0], x[13]))
+Best: 0.957500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: add(pdiv(0.3, x[12]), add(x[9], x[7])
+Best: 0.940000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[13], pdiv(sub(x[9], x[3]), 0.8)
+Best: 0.938333 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: x[9
+Best: 0.937500 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: sub(sub(sub(x[13], x[8]), sub(0.9, mul(sub(x[9], sub(x[13], x[4])), 0.8))), add(add(sub(0.6, pdiv(0.4, sub(sub(x[3], x[8]), sub(0.9, mul(sub(x[8], sub(x[13], x[4])), 0.8))))), add(add(sub(sub(x[2], x[13]), x[13]), x[1]), sub(0.9, mul(sub(x[9], sub(x[13], x[4])), x[11])))), add(add(sub(x[6], pdiv(0.4, sub(sub(x[13], x[8]), sub(0.9, mul(sub(x[8], sub(x[13], x[4])), 0.8))))), add(add(sub(sub(x[8], sub(x[13], x[4])), 0.8), add(add(sub(x[6], pdiv(0.7, x[12])), sub(0.1, mul(0.6, 0.8))), sub(sub(pdiv(sub(0.9, x[7]), x[1]), add(add(add(x[4], x[5]), sub(0.8, sub(0.1, mul(x[12], x[15])))), x[12])), add(0.6, pdiv(x[14], sub(sub(x[13], x[8]), sub(0.9, mul(sub(x[8], x[13]), x[4])))))))), 0.8)), add(add(sub(0.6, pdiv(0.4, sub(sub(x[13], x[8]), sub(0.9, mul(sub(x[8], sub(x[13], x[4])), 0.8))))), add(add(sub(sub(x[8], sub(x[13], x[4])), 0.8), add(add(sub(0.6, pdiv(0.7, x[12])), sub(0.1, mul(0.6, 0.8))), sub(sub(pdiv(sub(0.9, x[7]), x[1]), add(x[12], add(x[4], x[5]))), sub(0.8, sub(0.9, x[7]))))), x[1])), x[10])))
+Best: 0.952500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}
+Final Individual: add(x[13], add(pdiv(x[9], 0.8), sub(0.1, x[0]))
+AUC = 0.6587234042553192
+                 SensLevel0          SensLevel1  ...  SpeCI_lo  SpeCI_hi
+ponyGE  0.17021276595744678  0.4148936170212766  ...  0.497141  0.862859
+
+[1 rows x 12 columns]
+Elapsed time:  28319.31235575676
+
+
+
+
+
+
+<e> ::= <op>(<e>, <e>) | <op>(<e>, <c>) | x[<idx>]
+<op> ::= add | mul | sub | pdiv
+<idx> ::= 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15
+<c> ::= 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6 | 0.7 | 0.8 | 0.9
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.857500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(sub(x[13], x[3]), mul(sub(add(x[9], 0.2), 0.3), 0.9)
+Best: 0.915000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: add(mul(add(add(pdiv(pdiv(mul(mul(x[9], 0.6), add(pdiv(add(x[10], 0.3), pdiv(mul(x[12], 0.5), 0.3)), 0.5)), 0.2), 0.5), add(sub(sub(sub(x[13], add(add(x[2], 0.8), pdiv(x[4], 0.8))), 0.8), add(add(sub(pdiv(add(x[9], 0.9), mul(pdiv(add(x[12], sub(x[9], 0.9)), 0.1), 0.6)), x[15]), 0.8), 0.8)), 0.2)), 0.6), 0.2), pdiv(pdiv(add(x[9], 0.2), 0.8), 0.8)
+Best: 0.900833 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: mul(pdiv(add(sub(x[0], x[0]), x[10]), mul(pdiv(mul(add(x[6], add(add(sub(mul(sub(add(pdiv(x[13], 0.1), 0.5), 0.9), 0.9), pdiv(x[3], 0.2)), 0.5), sub(add(mul(x[13], 0.1), 0.5), x[2]))), 0.4), 0.4), 0.6)), mul(add(pdiv(add(pdiv(x[9], 0.7), mul(mul(add(add(x[9], mul(mul(x[10], x[9]), 0.3)), 0.1), 0.8), 0.2)), 0.7), 0.1), 0.5)
+Best: 0.880000 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: sub(mul(mul(add(x[9], mul(add(add(mul(x[15], 0.3), mul(add(x[9], x[12]), 0.5)), 0.9), 0.6)), 0.1), 0.3), 0.6
+Best: 0.862500 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: sub(x[7], pdiv(add(pdiv(x[10], sub(x[12], 0.6)), 0.8), 0.8)
+Best: 0.965000 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}
+Final Individual: add(pdiv(x[9], pdiv(x[12], add(add(pdiv(x[12], 0.9), pdiv(x[12], 0.2)), add(pdiv(x[2], 0.5), 0.4)))), pdiv(sub(sub(x[9], x[0]), 0.7), 0.6)
+Best: 0.962500 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(add(sub(pdiv(x[9], 0.6), x[0]), 0.8), add(pdiv(mul(x[13], 0.6), 0.8), 0.6)
+Best: 0.937500 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: mul(add(sub(x[13], sub(sub(x[3], 0.4), pdiv(x[9], 0.9))), 0.1), 0.6
+Best: 0.928333 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(mul(x[9], 0.2), add(x[9], sub(mul(mul(pdiv(x[13], 0.9), 0.8), 0.7), pdiv(mul(x[10], 0.6), 0.7)))
+Best: 0.979167 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}
+Final Individual: mul(add(add(x[9], mul(x[0], sub(x[3], x[13]))), 0.3), 0.9
+AUC = 0.6476595744680851
+                 SensLevel0           SensLevel1  ...  SpeCI_lo  SpeCI_hi
+ponyGE  0.15957446808510628  0.38829787234042556  ...  0.324157  0.715843
+
+[1 rows x 12 columns]
+Elapsed time:  27630.201862335205
+
+        param_grid = {
+            'ponyGE__GENERATIONS': [50, 100, 200],
+            'ponyGE__POPULATION_SIZE': [100, 200, 500, 1000]#, 3000]
+            
+        }
+
+Mesma gramática do anterior.
+Acertando a roc_auc com fuzzy=0 ao invés de max<1 e min>0.
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.902500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(sub(x[13], x[3]), pdiv(mul(sub(x[9], 0.1), 0.6), 0.8)
+Best: 0.892500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: add(x[9], sub(x[13], x[3])
+Best: 0.905833 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(add(pdiv(add(sub(add(x[9], x[1]), 0.2), add(sub(mul(x[9], x[12]), pdiv(x[12], add(x[0], 0.6))), pdiv(mul(add(mul(mul(sub(x[0], 0.8), 0.6), 0.9), 0.3), 0.2), add(add(add(mul(add(x[7], pdiv(pdiv(x[7], 0.5), 0.4)), 0.8), x[14]), 0.7), add(x[5], 0.5))))), 0.2), add(add(add(pdiv(pdiv(add(mul(pdiv(sub(mul(x[1], 0.9), 0.9), 0.3), 0.2), 0.7), 0.8), 0.9), pdiv(x[7], sub(sub(add(add(x[12], 0.5), x[7]), 0.5), 0.3))), add(add(pdiv(pdiv(add(mul(pdiv(sub(pdiv(x[7], 0.8), 0.3), 0.4), 0.5), 0.5), 0.2), 0.9), pdiv(sub(add(sub(add(x[1], x[12]), 0.9), add(mul(add(sub(x[9], 0.9), 0.5), 0.6), 0.8)), 0.6), x[1])), add(mul(x[10], 0.2), add(pdiv(x[7], 0.3), add(x[13], 0.2))))), 0.7)), 0.3
+Best: 0.892500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: sub(mul(mul(add(x[9], mul(add(add(mul(x[15], 0.3), mul(add(x[9], x[12]), 0.5)), 0.9), 0.6)), 0.1), 0.3), 0.6
+Best: 0.862500 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: add(add(pdiv(add(x[12], pdiv(add(x[7], pdiv(add(x[6], x[9]), 0.9)), 0.2)), 0.3), add(x[2], sub(x[14], x[5]))), add(x[4], x[2])
+Best: 0.925833 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: mul(add(add(add(pdiv(pdiv(mul(add(x[9], mul(add(x[12], 0.9), add(sub(x[13], add(x[2], 0.4)), 0.3))), 0.2), 0.2), 0.1), sub(add(x[9], pdiv(add(pdiv(x[6], x[3]), 0.7), 0.8)), x[13])), 0.3), 0.2), 0.7
+Best: 0.962500 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[9], add(sub(mul(x[13], 0.8), x[3]), 0.4)
+Best: 0.937500 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[9], add(mul(add(add(add(mul(pdiv(sub(x[5], 0.2), x[12]), pdiv(add(pdiv(x[9], 0.2), 0.5), 0.5)), 0.3), 0.1), pdiv(sub(x[1], 0.1), 0.6)), 0.2), sub(x[9], 0.6))
+Best: 0.928333 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(add(x[9], sub(x[13], x[3])), 0.3
+Best: 0.937500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: add(sub(pdiv(sub(x[9], 0.2), 0.5), 0.1), pdiv(pdiv(mul(x[9], mul(x[1], x[11])), 0.7), sub(mul(sub(pdiv(sub(x[12], 0.3), x[3]), 0.9), x[0]), 0.8))
+AUC = 0.7685106382978724
+
+Alterando:
+MAX_INIT_TREE_DEPTH:    10
+MAX_TREE_DEPTH:         17
+Para:
+MAX_INIT_TREE_DEPTH:    3
+MAX_TREE_DEPTH:         5
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.940000 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(mul(x[9], 0.9), sub(x[13], x[3])
+Best: 0.924167 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: mul(x[5], pdiv(x[9], x[12])
+Best: 0.896667 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: add(sub(x[13], x[0]), x[9]
+Best: 0.896667 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: sub(x[9], sub(x[0], x[13])
+Best: 0.855833 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: add(x[9], sub(x[13], x[3])
+Best: 0.900000 using {'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: sub(x[9], sub(x[3], x[13])
+Best: 0.933333 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: sub(mul(x[7], 0.9), x[8]
+Best: 0.937500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: sub(x[9], mul(x[3], 0.3)
+Best: 0.944167 using {'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[12], pdiv(x[9], 0.4)
+Best: 0.966667 using {'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: add(add(x[13], 0.2), sub(x[9], x[3])
+AUC = 0.851063829787234
+                SensLevel0          SensLevel1  ...  SpeCI_lo SpeCI_hi
+ponyGE  0.5638297872340423  0.7872340425531915  ...  0.752615  1.00738
+
+[1 rows x 12 columns]
+Elapsed time:  6856.730810403824
+
+
+
+
+param_grid = {
+            'ponyGE__GENERATIONS': [50, 100, 200],
+            'ponyGE__POPULATION_SIZE': [100, 200, 500, 1000],#, 3000]
+            'ponyGE__MAX_INIT_TREE_DEPTH': [4, 5],
+            'ponyGE__MAX_TREE_DEPTH': [5, 6]
+
+
+            
+        }
+
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- ponyGE --
+Number of experiments: 10
+Best: 0.940000 using {'ponyGE__GENERATIONS': 200, 'ponyGE__MAX_INIT_TREE_DEPTH': 4, 'ponyGE__MAX_TREE_DEPTH': 5, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(mul(x[9], 0.9), sub(x[13], x[3])
+Best: 0.924167 using {'ponyGE__GENERATIONS': 200, 'ponyGE__MAX_INIT_TREE_DEPTH': 4, 'ponyGE__MAX_TREE_DEPTH': 5, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: mul(x[5], pdiv(x[9], x[12])
+Best: 0.930000 using {'ponyGE__GENERATIONS': 200, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 100}
+Final Individual: add(sub(x[9], x[3]), mul(x[13], 0.9)
+Best: 0.917500 using {'ponyGE__GENERATIONS': 50, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[12], pdiv(mul(x[9], 0.6), 0.2)
+Best: 0.904167 using {'ponyGE__GENERATIONS': 100, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 5, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: add(mul(x[13], 0.8), sub(x[9], x[3])
+Best: 0.946667 using {'ponyGE__GENERATIONS': 100, 'ponyGE__MAX_INIT_TREE_DEPTH': 4, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 500}
+Final Individual: add(sub(pdiv(x[9], 0.4), 0.8), x[12]
+Best: 0.973333 using {'ponyGE__GENERATIONS': 100, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 200}
+Final Individual: add(add(sub(x[13], x[3]), x[9]), 0.2
+Best: 0.969167 using {'ponyGE__GENERATIONS': 100, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[13], sub(x[9], x[3])
+Best: 0.944167 using {'ponyGE__GENERATIONS': 50, 'ponyGE__MAX_INIT_TREE_DEPTH': 4, 'ponyGE__MAX_TREE_DEPTH': 5, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[12], pdiv(x[9], 0.4)
+Best: 0.991667 using {'ponyGE__GENERATIONS': 200, 'ponyGE__MAX_INIT_TREE_DEPTH': 5, 'ponyGE__MAX_TREE_DEPTH': 6, 'ponyGE__POPULATION_SIZE': 1000}
+Final Individual: add(x[9], sub(add(x[13], x[9]), pdiv(x[0], 0.8))
+AUC = 0.7897872340425531
+                SensLevel0          SensLevel1  ... SpeCI_lo SpeCI_hi
+ponyGE  0.4999999999999999  0.7021276595744681  ...  0.69629  0.98371
+
+[1 rows x 12 columns]
+Elapsed time:  25408.70150923729
+
+
+
+
