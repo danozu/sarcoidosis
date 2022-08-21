@@ -142,7 +142,7 @@ class ponyge(BaseSymbolic, ClassifierMixin):
              MAX_INIT_TREE_DEPTH = MAX_INIT_TREE_DEPTH,
              TOURNAMENT_SIZE = 2,
              MAX_TREE_DEPTH = MAX_TREE_DEPTH,
-             RANDOM_SEED = RANDOM_SEED)#,
+             RANDOM_SEED = RANDOM_SEED)
      #        data_address = data_address)
 
     def predict_proba(self, X):

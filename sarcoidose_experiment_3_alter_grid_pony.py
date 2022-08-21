@@ -24,6 +24,9 @@ from sklearn import metrics
 #from sklearn.model_selection import StratifiedKFold
 #from sklearn.linear_model import LogisticRegression
 
+from sklearn.feature_selection import RFE
+from sklearn.svm import LinearSVC
+
 from fuzzify import *
 from PonyGE2.src.genetic_ponyge import *
 
@@ -32,13 +35,13 @@ if __name__ == '__main__':
 
     Run = 1
 
-    filename = "sarcoidose_experiment_2_alter"
-    filename_dataset = "sa.csv"
-    filename_crossval = "sa_cvi.mat"
-    filename_matlab = "Exp_sarcoidose_sa.csv"
+    filename = "sarcoidose_experiment_3_normal"
+    filename_dataset = "sn.csv"
+    filename_crossval = "sn_cvi.mat"
+    filename_matlab = "Exp_sarcoidose_sn.csv"
     filename_matlab_cc = "cc_" + filename_matlab
     filename_matlab_p = "p_" + filename_matlab
-    crossval_field = 'SA_CrossValIndex'
+    crossval_field = 'SN_CrossValIndex'
     filename_csv = filename + ".csv"
     filename_roc = "roc_" + filename_csv
     filename_auc = "auc_" + filename_csv
@@ -100,6 +103,10 @@ if __name__ == '__main__':
             'model': 'ponyGE',
         }
     ]
+    
+    mfs = LinearSVC(C=1, penalty="l1", dual=False, max_iter=5000)
+
+    feat_selection = RFE(mfs, step=1)
 
     if Run == 1:
         seed = 7
@@ -119,14 +126,13 @@ if __name__ == '__main__':
 
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('ponyGE', ponyge(CROSSOVER_PROBABILITY=0.8, MUTATION_PROBABILITY=0.01, 
                                             MAX_TREE_DEPTH=17, RANDOM_SEED=seed)))
         model = Pipeline(estimators)
-        
-        MAX_TREE_DEPTH=17,
-        RANDOM_SEED=7,
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'ponyGE__MAX_INIT_TREE_DEPTH': [4, 12],
             'ponyGE__TOURNAMENT_SIZE': [2, 7, 20],
             'ponyGE__GENERATIONS': [5, 20, 50, 100, 200],
