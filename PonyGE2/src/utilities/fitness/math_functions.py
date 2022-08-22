@@ -1,8 +1,33 @@
 from math import ceil
-
 import numpy as np
-
 np.seterr(all="raise")
+
+def WA(a, b, x):
+    return x*a+(1-x)*b
+
+def OWA(a, b, x):
+    return x*np.maximum(a, b)+(1-x)*np.minimum(a, b)
+
+def minimum(a, b):
+    return np.minimum(a, b)
+
+def maximum(a, b):
+    return np.maximum(a, b)
+    
+def dilator(b):
+    return b**0.5
+
+def concentrator(b):
+    return b**2
+
+def add(x,y):
+    return x + y
+
+def sub(x,y):
+    return x - y
+
+def mul(x,y):
+    return x * y
 
 
 def return_one_percent(num, pop_size):
@@ -18,7 +43,7 @@ def return_one_percent(num, pop_size):
     """
 
     # Calculate one percent of the given population size.
-    percent = int(round(pop_size / 100))
+    percent = int(round(pop_size/100))
 
     # Return the biggest number.
     if percent < num:
@@ -50,7 +75,7 @@ def aq(a, b):
     :return: np.array analytic quotient, analogous to a / b.
 
     """
-    return a / np.sqrt(1.0 + b ** 2.0)
+    return a / np.sqrt(1.0 + b**2.0)
 
 
 def pdiv(x, y):
@@ -116,7 +141,7 @@ def ppow(x, y):
     :return: np.array x**y, but protected
 
     """
-    return np.abs(x) ** y
+    return np.abs(x)**y
 
 
 def ppow2(x, y):
@@ -179,7 +204,7 @@ def percentile(sorted_list, p):
     in a sorted list
 
     :param sorted_list: The sorted list
-    :param p: The percentile
+    :param p: The percetile
     :return: The element corresponding to the percentile
     """
 
@@ -248,5 +273,5 @@ def sci_notation(n, prec=3):
     """
     base = 10
     exponent = ilog(n, base)
-    mantissa = n / base ** exponent
+    mantissa = n / base**exponent
     return '{0:.{1}f}e{2:+d}'.format(mantissa, prec, exponent)
