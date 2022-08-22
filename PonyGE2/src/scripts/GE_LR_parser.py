@@ -1,19 +1,20 @@
 from sys import path
-path.append("PonyGE2/src")
 
-from PonyGE2.src.utilities.algorithm.general import check_python_version
+path.append("../src")
+
+from utilities.algorithm.general import check_python_version
 
 check_python_version()
 
 import sys
 
-from PonyGE2.src.algorithm.parameters import params, set_params
-from PonyGE2.src.operators.subtree_parse import get_NT_from_str, get_num_from_str, \
+from algorithm.parameters import params, set_params
+from operators.subtree_parse import get_NT_from_str, get_num_from_str, \
     generate_key_and_check, check_snippets_for_solution
-from PonyGE2.src.representation.tree import Tree
-from PonyGE2.src.utilities.representation.check_methods import generate_codon, \
+from representation.tree import Tree
+from utilities.representation.check_methods import generate_codon, \
     check_ind_from_parser
-from PonyGE2.src.utilities.stats import trackers
+from utilities.stats import trackers
 
 
 def parse_terminals(target):
@@ -43,18 +44,18 @@ def parse_terminals(target):
     for T in sorted(terms.keys()):
         # Iterate over all Terminals.
 
-        # Find all occurances of this terminal in the target string.
-        occurrances = []
+        # Find all occurrences of this terminal in the target string.
+        occurrences = []
         index = 0
         while index < len(target):
             index = target.find(T, index)
-            if index not in occurrances and index != -1:
-                occurrances.append(index)
+            if index not in occurrences and index != -1:
+                occurrences.append(index)
                 index += len(T)
             else:
                 break
 
-        for idx in occurrances:
+        for idx in occurrences:
             # Check each occurrence of this terminal in the target string.
 
             for NT in terms[T]:
@@ -66,7 +67,7 @@ def parse_terminals(target):
                     # particular rule.
 
                     # Generate a key for the snippets repository.
-                    key = " ".join([str([idx, idx+len(T)]), NT])
+                    key = " ".join([str([idx, idx + len(T)]), NT])
 
                     # Get index of production choice.
                     index = [[sym['symbol'] for sym in choice['choice']] for
@@ -208,7 +209,7 @@ def reduce(solution):
                                 # This is a terminal, decrement by length of T.
 
                                 # Check output of target string.
-                                check = target[pre-len(NTs[item][0]):pre]
+                                check = target[pre - len(NTs[item][0]):pre]
 
                                 if check == NTs[item][0]:
                                     # We have a match.
@@ -252,7 +253,7 @@ def reduce(solution):
                                     break
 
                         # Step 2: reduce everything after the loc.
-                        for i, item in enumerate(alt_cs[loc+1:]):
+                        for i, item in enumerate(alt_cs[loc + 1:]):
 
                             if NTs[item][1] == "T":
                                 # This is a terminal, decrement by length of T.
@@ -348,7 +349,6 @@ def main():
 
 
 if __name__ == '__main__':
-
     # Set parameters
     set_params(sys.argv[1:], create_files=False)
 

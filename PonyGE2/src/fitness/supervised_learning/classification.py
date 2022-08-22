@@ -1,9 +1,6 @@
-from PonyGE2.src.fitness.supervised_learning.supervised_learning import supervised_learning
-
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.fitness.error_metric import f1_score
-
-
+from algorithm.parameters import params
+from fitness.supervised_learning.supervised_learning import supervised_learning
+from utilities.fitness.error_metric import f1_score
 
 
 class classification(supervised_learning):

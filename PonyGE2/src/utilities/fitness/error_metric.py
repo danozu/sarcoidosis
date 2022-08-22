@@ -1,9 +1,8 @@
 import warnings
 
 import numpy as np
-#from sklearn.metrics.classification import f1_score as sklearn_f1_score
-from sklearn.metrics import roc_curve, auc
-import math
+from sklearn.metrics import f1_score as sklearn_f1_score
+
 
 def mae(y, yhat):
     """
@@ -15,6 +14,7 @@ def mae(y, yhat):
     """
 
     return np.mean(np.abs(y - yhat))
+
 
 # Set maximise attribute for mae error metric.
 mae.maximise = False
@@ -31,6 +31,7 @@ def rmse(y, yhat):
 
     return np.sqrt(np.mean(np.square(y - yhat)))
 
+
 # Set maximise attribute for rmse error metric.
 rmse.maximise = False
 
@@ -45,6 +46,7 @@ def mse(y, yhat):
     """
 
     return np.mean(np.square(y - yhat))
+
 
 # Set maximise attribute for mse error metric.
 mse.maximise = False
@@ -61,8 +63,20 @@ def hinge(y, yhat):
     :return: The hinge loss.
     """
 
-    # NB not np.max. maximum does element-wise max
-    return np.sum(np.maximum(0, 1 - y * yhat))
+    # Deal with possibility of {-1, 1} or {0, 1} class label convention
+    y_vals = set(y)
+    # convert from {0, 1} to {-1, 1}
+    if 0 in y_vals:
+        y[y == 0] = -1
+
+    # Our definition of hinge loss cannot be used for multi-class
+    assert len(y_vals) == 2
+
+    # NB not np.max. maximum does element-wise max.  Also we use the
+    # mean hinge loss rather than sum so that the result doesn't
+    # depend on the size of the dataset.
+    return np.mean(np.maximum(0, 1 - y * yhat))
+
 
 # Set maximise attribute for hinge error metric.
 hinge.maximise = False
@@ -85,8 +99,21 @@ def f1_score(y, yhat):
     if not isinstance(yhat, np.ndarray) or len(yhat.shape) < 1:
         yhat = np.ones_like(y) * yhat
 
-    # convert real values to boolean with a zero threshold
-    yhat = (yhat > 0) # mudei de zero para 0.5 para usar na APF, que só gera resultados entre 0 e 1
+    # Deal with possibility of {-1, 1} or {0, 1} class label
+    # convention.  FIXME: would it be better to canonicalise the
+    # convention elsewhere and/or create user parameter to control it?
+    # See https://github.com/PonyGE/PonyGE2/issues/113.
+    y_vals = set(y)
+    # convert from {-1, 1} to {0, 1}
+    if -1 in y_vals:
+        y[y == -1] = 0
+
+    # We binarize with a threshold, so this cannot be used for multi-class
+    assert len(y_vals) == 2
+
+    # convert real values to boolean {0, 1} with a zero threshold
+    yhat = (yhat > 0)
+
     with warnings.catch_warnings():
         # if we predict the same value for all samples (trivial
         # individuals will do so as described above) then f-score is
@@ -94,33 +121,11 @@ def f1_score(y, yhat):
         # return 0. We can ignore that warning and happily return 0.
         warnings.simplefilter("ignore")
         return sklearn_f1_score(y, yhat, average="weighted")
+
+
 # Set maximise attribute for f1_score error metric.
 f1_score.maximise = True
 
-def roc_auc(y, yhat, w=None):
-    # if phen is a constant, eg 0.001 (doesn't refer to x), then yhat
-    # will be a constant. that will break roc_auc. so convert to a
-    # constant array.
-    if not isinstance(yhat, np.ndarray) or len(yhat.shape) < 1:
-        yhat = np.ones_like(y) * yhat
-    fuzzy = 1
-    #if max(yhat) <= 1 and min(yhat) >= 0:
-    if fuzzy == 1:
-        proba = np.vstack([1 - yhat, yhat]).T
-    else:
-        sigmoid = np.zeros([len(yhat)], dtype=float)
-        for i in range(len(yhat)):
-            try:
-                sigmoid[i] = 1 / (1 + math.exp(-yhat[i]))
-            except OverflowError:
-                s = np.sign(yhat[i])*float("inf")
-                sigmoid[i] = 1 / (1 + math.exp(-s))
-        proba = np.vstack([1 - sigmoid, sigmoid]).T
-        
-    fpr, tpr, threshold = roc_curve(y, proba[:, 1])
-    return auc(fpr, tpr)
-# Set maximise attribute for roc_auc error metric.
-roc_auc.maximise = True
 
 def Hamming_error(y, yhat):
     """
@@ -129,4 +134,6 @@ def Hamming_error(y, yhat):
     Assumes both y and yhat are binary or integer-valued.
     """
     return np.sum(y != yhat)
+
+
 Hamming_error.maximise = False

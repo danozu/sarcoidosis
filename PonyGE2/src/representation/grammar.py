@@ -1,8 +1,8 @@
 from math import floor
-from re import match, finditer, DOTALL, MULTILINE
+from re import DOTALL, MULTILINE, finditer, match
 from sys import maxsize
 
-from PonyGE2.src.algorithm.parameters import params
+from algorithm.parameters import params
 
 
 class Grammar(object):
@@ -42,6 +42,9 @@ class Grammar(object):
         self.ruleregex = '(?P<rulename><\S+>)\s*::=\s*(?P<production>(?:(?=\#)\#[^\r\n]*|(?!<\S+>\s*::=).+?)+)'
         self.productionregex = '(?=\#)(?:\#.*$)|(?!\#)\s*(?P<production>(?:[^\'\"\|\#]+|\'.*?\'|".*?")+)'
         self.productionpartsregex = '\ *([\r\n]+)\ *|([^\'"<\r\n]+)|\'(.*?)\'|"(.*?)"|(?P<subrule><[^>|\s]+>)|([<]+)'
+
+        # to speed up the recursion step
+        self.recursion_cache = {}
 
         # Read in BNF grammar, set production rules, terminals and
         # non-terminals.
@@ -167,7 +170,7 @@ class Grammar(object):
                                 self.terminals[str(i)] = \
                                     [rule.group('rulename')]
                             elif rule.group('rulename') not in \
-                                self.terminals[str(i)]:
+                                    self.terminals[str(i)]:
                                 self.terminals[str(i)].append(
                                     rule.group('rulename'))
                             tmp_productions.append({"choice": tmp_production,
@@ -195,7 +198,7 @@ class Grammar(object):
                                     self.terminals[terminalparts] = \
                                         [rule.group('rulename')]
                                 elif rule.group('rulename') not in \
-                                    self.terminals[terminalparts]:
+                                        self.terminals[terminalparts]:
                                     self.terminals[terminalparts].append(
                                         rule.group('rulename'))
                                 terminalparts = None
@@ -224,7 +227,7 @@ class Grammar(object):
                             self.terminals[terminalparts] = \
                                 [rule.group('rulename')]
                         elif rule.group('rulename') not in \
-                            self.terminals[terminalparts]:
+                                self.terminals[terminalparts]:
                             self.terminals[terminalparts].append(
                                 rule.group('rulename'))
                     tmp_productions.append({"choice": tmp_production,
@@ -316,20 +319,29 @@ class Grammar(object):
 
         # Get choices of current symbol.
         choices = self.rules[cur_symbol]['choices']
-        nt = self.non_terminals[cur_symbol]
 
         recursive = False
         for choice in choices:
             for sym in choice['choice']:
-                # Recurse over choices.
-                recursive_symbol = self.check_recursion(sym["symbol"], seen)
-                recursive = recursive or recursive_symbol
+                # T is always non-recursive so no need to care about them
+                if sym["type"] == "NT":
+                    # Check the cache, no need to traverse the same subtree multiple times
+                    if sym["symbol"] in self.recursion_cache:
+                        # Grab previously calculated value
+                        recursion_result = self.recursion_cache[sym["symbol"]]
+                    else:
+                        # Traverse subtree
+                        recursion_result = self.check_recursion(sym["symbol"], seen)
+                        # Add result to cache for future runs
+                        self.recursion_cache[sym["symbol"]] = recursion_result
+
+                    recursive = recursive or recursion_result
 
         # Set recursive properties.
-        nt['recursive'] = recursive
+        self.non_terminals[cur_symbol]['recursive'] = recursive
         seen.remove(cur_symbol)
 
-        return nt['recursive']
+        return recursive
 
     def set_arity(self):
         """
@@ -387,11 +399,11 @@ class Grammar(object):
             for choice in choices:
                 # Set the maximum path to a terminal for each produciton choice
                 choice['max_path'] = max([item["min_steps"] for item in
-                                      choice['choice']])
+                                          choice['choice']])
 
             # Find shortest path to a terminal for all production choices for
             # the current NT. The shortest path will be the minimum of the
-            # maximum paths to a T for each choice over all chocies.
+            # maximum paths to a T for each choice over all choices.
             min_path = min([choice['max_path'] for choice in choices])
 
             # Set the minimum path in the self.non_terminals dict.
@@ -498,14 +510,14 @@ class Grammar(object):
                         # Iterate over all symbols in a production choice.
                         symbol_arity_pos = 0
 
-                        if j["type"] is "NT":
+                        if j["type"] == "NT":
                             # We are only interested in non-terminal symbols
                             for child in self.rules[j["symbol"]]['choices']:
                                 # Iterate over all production choices for
                                 # each NT symbol in the original choice.
 
                                 if len(child['choice']) == 1 and \
-                                   child['choice'][0]["type"] == "T":
+                                        child['choice'][0]["type"] == "T":
                                     # If the child choice leads directly to
                                     # a single terminal, increment the
                                     # permutation count.
@@ -517,9 +529,13 @@ class Grammar(object):
                                     # Generate a key for the permutations
                                     # dictionary and increment the
                                     # permutations count there.
-                                    key = [sym['symbol'] for sym in child['choice']]
-                                    if (i - 1) in depth_per_symbol_trees[str(key)].keys():
-                                        symbol_arity_pos += depth_per_symbol_trees[str(key)][i - 1]
+                                    key = [sym['symbol'] for sym in
+                                           child['choice']]
+                                    if (i - 1) in depth_per_symbol_trees[
+                                        str(key)].keys():
+                                        symbol_arity_pos += \
+                                            depth_per_symbol_trees[str(key)][
+                                                i - 1]
 
                             # Multiply original count by new count.
                             sym_pos *= symbol_arity_pos
@@ -533,7 +549,10 @@ class Grammar(object):
             for sy in start_symbols:
                 key = [sym['symbol'] for sym in sy['choice']]
                 if str(key) in depth_per_symbol_trees:
-                    pos += depth_per_symbol_trees[str(key)][depth] if depth in depth_per_symbol_trees[str(key)] else 0
+                    pos += depth_per_symbol_trees[str(key)][depth] if depth in \
+                                                                      depth_per_symbol_trees[
+                                                                          str(
+                                                                              key)] else 0
                 else:
                     pos += 1
 

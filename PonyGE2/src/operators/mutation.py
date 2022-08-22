@@ -1,10 +1,10 @@
-from random import randint, random, choice
+from random import choice, randint, random
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.representation import individual
-from PonyGE2.src.representation.derivation import generate_tree
-from PonyGE2.src.representation.latent_tree import latent_tree_mutate, latent_tree_repair
-from PonyGE2.src.utilities.representation.check_methods import check_ind
+from algorithm.parameters import params
+from representation import individual
+from representation.derivation import generate_tree
+from representation.latent_tree import latent_tree_mutate, latent_tree_repair
+from utilities.representation.check_methods import check_ind
 
 
 def mutation(pop):
@@ -71,20 +71,12 @@ def int_flip_per_codon(ind):
         # Linear mutation cannot be performed on this individual.
         return ind
 
-    # Set mutation probability. Default is 1 over the length of the genome.
-    if params['MUTATION_PROBABILITY'] and params['MUTATION_EVENTS'] == 1:
+    # Set mutation probability. 
+    if params['MUTATION_PROBABILITY'] is not None:
         p_mut = params['MUTATION_PROBABILITY']
-    elif params['MUTATION_PROBABILITY'] and params['MUTATION_EVENTS'] > 1:
-        s = "operators.mutation.int_flip_per_codon\n" \
-            "Error: mutually exclusive parameters for 'MUTATION_PROBABILITY'" \
-            "and 'MUTATION_EVENTS' have been explicitly set.\n" \
-            "       Only one of these parameters can be used at a time with" \
-            "int_flip_per_codon mutation."
-        raise Exception(s)
     else:
-        # Default mutation events per individual is 1. Raising this number
-        # will influence the mutation probability for each codon.
-        p_mut = params['MUTATION_EVENTS']/eff_length
+        # Default is 1 divided by genome length.
+        p_mut = 1.0 / eff_length
 
     # Mutation probability works per-codon over the portion of the
     # genome as defined by the within_used flag.
@@ -117,7 +109,7 @@ def int_flip_per_ind(ind):
         return ind
 
     for _ in range(params['MUTATION_EVENTS']):
-        idx = randint(0, eff_length-1)
+        idx = randint(0, eff_length - 1)
         ind.genome[idx] = randint(0, params['CODON_SIZE'])
 
     # Re-build a new individual with the newly mutated genetic information.
@@ -148,7 +140,7 @@ def subtree(ind):
 
         # Find the list of nodes we can mutate from.
         targets = ind_tree.get_target_nodes([], target=params[
-                                          'BNF_GRAMMAR'].non_terminals)
+            'BNF_GRAMMAR'].non_terminals)
 
         # Pick a node.
         new_tree = choice(targets)
@@ -216,16 +208,16 @@ def get_effective_length(ind):
 
 def LTGE_mutation(ind):
     """Mutation in the LTGE representation."""
-    
+
     # mutate and repair.
-    g, ph = latent_tree_repair(latent_tree_mutate(ind.genome), 
+    g, ph = latent_tree_repair(latent_tree_mutate(ind.genome),
                                params['BNF_GRAMMAR'], params['MAX_TREE_DEPTH'])
 
     # wrap up in an Individual and fix up various Individual attributes
     ind = individual.Individual(g, None, False)
 
     ind.phenotype = ph
-    
+
     # number of nodes is the number of decisions in the genome
     ind.nodes = ind.used_codons = len(g)
 
@@ -234,7 +226,7 @@ def LTGE_mutation(ind):
 
     # in LTGE there are no invalid individuals
     ind.invalid = False
-    
+
     return ind
 
 

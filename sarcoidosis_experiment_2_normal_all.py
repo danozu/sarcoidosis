@@ -149,7 +149,7 @@ if __name__ == '__main__':
             'SVM__kernel': ['rbf']
         }
 
-        options = {'Importance': True}
+        options = { }
 
         svm_grid_result, svm_class, svm_auc, svm_probs, svm_preds, svm_score, svm_params, svm_features, svm_cc = evaluate_grid_model(
             X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -173,7 +173,7 @@ if __name__ == '__main__':
             'KNN__weights': ['distance']
         }
 
-        options = {'Importance': True}
+        options = { }
 
         knn_grid_result, knn_class, knn_auc, knn_probs, knn_preds, knn_score, knn_params, knn_features, knn_cc = evaluate_grid_model(
             X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -196,7 +196,7 @@ if __name__ == '__main__':
         estimators.append(('RF', RandomForestClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'Importance': True}
+        options = { }
 
         rf_grid_result, rf_class, rf_auc, rf_probs, rf_preds, rf_score, rf_params, rf_features, rf_cc = evaluate_grid_model(
                 X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -222,7 +222,7 @@ if __name__ == '__main__':
         estimators.append(('ADAB', AdaBoostClassifier(base_estimator=DTC, random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'Importance': True}
+        options = { }
 
         adab_grid_result, adab_class, adab_auc, adab_probs, adab_preds, adab_score, adab_params, adab_features, adab_cc = evaluate_grid_model(
                 X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -243,10 +243,10 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
-        estimators.append(('LGB', LGBMClassifier(random_state=seed, max_depth=0)))
+        estimators.append(('LGB', LGBMClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'Importance': True}
+        options = { }
 
         lgb_grid_result, lgb_class, lgb_auc, lgb_probs, lgb_preds, lgb_score, lgb_params, lgb_features, lgb_cc = evaluate_grid_model(
                 X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)

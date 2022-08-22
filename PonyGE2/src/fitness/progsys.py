@@ -1,10 +1,11 @@
+import json
+from subprocess import Popen, PIPE
+import sys
+from os import path
+
 from algorithm.parameters import params
 from fitness.base_ff_classes.base_ff import base_ff
 
-from os import path
-import subprocess
-import json
-import sys
 
 
 class progsys(base_ff):
@@ -27,20 +28,20 @@ class progsys(base_ff):
     def __init__(self):
         # Initialise base fitness function class.
         super().__init__()
-        
+
         self.training, self.test, self.embed_header, self.embed_footer = \
             self.get_data(params['DATASET_TRAIN'], params['DATASET_TEST'],
                           params['GRAMMAR_FILE'])
         self.eval = self.create_eval_process()
         if params['MULTICORE']:
-            print("Warming: Multicore is not supported with progsys "
+            print("Warming: multi-core is not supported with progsys "
                   "as fitness function.\n"
                   "Fitness function only allows sequential evaluation.")
 
     def evaluate(self, ind, **kwargs):
-    
+
         dist = kwargs.get('dist', 'training')
-        
+
         program = self.format_program(ind.phenotype,
                                       self.embed_header, self.embed_footer)
         data = self.training if dist == "training" else self.test
@@ -49,7 +50,7 @@ class progsys(base_ff):
                                 'variables': ['cases', 'caseQuality',
                                               'quality']})
 
-        self.eval.stdin.write((eval_json+'\n').encode())
+        self.eval.stdin.write((eval_json + '\n').encode())
         self.eval.stdin.flush()
         result_json = self.eval.stdout.readline()
 
@@ -58,6 +59,10 @@ class progsys(base_ff):
         if 'exception' in result and 'JSONDecodeError' in result['exception']:
             self.eval.stdin.close()
             self.eval = self.create_eval_process()
+            
+       	if 'quality' in	result:
+            if result['quality'] > sys.maxsize:
+                result['quality'] = sys.maxsize
 
         if 'quality' not in result:
             result['quality'] = sys.maxsize
@@ -66,10 +71,8 @@ class progsys(base_ff):
     @staticmethod
     def create_eval_process():
         """create separate python process for evaluation"""
-        return subprocess.Popen(['python',
-                                 'scripts/python_script_evaluation.py'],
-                                stdout=subprocess.PIPE,
-                                stdin=subprocess.PIPE)
+        return Popen([sys.executable, 'scripts/python_script_evaluation.py'],
+                     stdout=PIPE, stdin=PIPE)
 
     def format_program(self, individual, header, footer):
         """formats the program by formatting the individual and adding
@@ -137,13 +140,10 @@ class progsys(base_ff):
         """ Return the training and test data for the current experiment.
         A new get_data method is required to load from a sub folder and to
         read the embed file"""
-        #train_set = path.join("..", "datasets", "progsys", train)
-        train_set = path.join("PonyGE2", "datasets", "progsys", train)
-        #test_set = path.join("..", "datasets", "progsys", test)
-        test_set = path.join("PonyGE2", "datasets", "progsys", test)
+        train_set = path.join("..", "datasets", "progsys", train)
+        test_set = path.join("..", "datasets", "progsys", test)
 
-        #embed_file = path.join("..", "grammars", "progsys",
-        embed_file = path.join("PonyGE2", "grammars", "progsys",
+        embed_file = path.join("..", "grammars", "progsys",
                                (grammar[8:-4] + "-Embed.txt"))
         with open(embed_file, 'r') as embed:
             embed_code = embed.read()
@@ -152,7 +152,7 @@ class progsys(base_ff):
         if insert > 0:
             embed_header = embed_code[:insert]
             embed_footer = embed_code[insert + len(self.INSERTCODE):]
-        with open(train_set, 'r') as train_file,\
+        with open(train_set, 'r') as train_file, \
                 open(test_set, 'r') as test_file:
             return train_file.read(), test_file.read(), \
                    embed_header, embed_footer

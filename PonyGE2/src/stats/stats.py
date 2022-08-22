@@ -1,43 +1,43 @@
 from copy import copy
 from sys import stdout
 from time import time
+
 import numpy as np
-
-from PonyGE2.src.algorithm.parameters import params
-#from PonyGE2.src.utilities.algorithm.NSGA2 import compute_pareto_metrics
-from PonyGE2.src.utilities.algorithm.state import create_state
-from PonyGE2.src.utilities.stats import trackers
-from PonyGE2.src.utilities.stats.save_plots import save_plot_from_data
-from PonyGE2.src.utilities.stats.file_io import save_stats_to_file, save_stats_headers, \
-    save_best_ind_to_file
-
+from algorithm.parameters import params
+from utilities.algorithm.NSGA2 import compute_pareto_metrics
+from utilities.algorithm.state import create_state
+from utilities.stats import trackers
+from utilities.stats.file_io import save_best_ind_to_file, \
+    save_first_front_to_file, save_stats_headers, save_stats_to_file
+from utilities.stats.save_plots import save_pareto_fitness_plot, \
+    save_plot_from_data
 
 """Algorithm statistics"""
 stats = {
-        "gen": 0,
-        "total_inds": 0,
-        "regens": 0,
-        "invalids": 0,
-        "runtime_error": 0,
-        "unique_inds": len(trackers.cache),
-        "unused_search": 0,
-        "ave_genome_length": 0,
-        "max_genome_length": 0,
-        "min_genome_length": 0,
-        "ave_used_codons": 0,
-        "max_used_codons": 0,
-        "min_used_codons": 0,
-        "ave_tree_depth": 0,
-        "max_tree_depth": 0,
-        "min_tree_depth": 0,
-        "ave_tree_nodes": 0,
-        "max_tree_nodes": 0,
-        "min_tree_nodes": 0,
-        "ave_fitness": 0,
-        "best_fitness": 0,
-        "time_taken": 0,
-        "total_time": 0,
-        "time_adjust": 0
+    "gen": 0,
+    "total_inds": 0,
+    "regens": 0,
+    "invalids": 0,
+    "runtime_error": 0,
+    "unique_inds": len(trackers.cache),
+    "unused_search": 0,
+    "ave_genome_length": 0,
+    "max_genome_length": 0,
+    "min_genome_length": 0,
+    "ave_used_codons": 0,
+    "max_used_codons": 0,
+    "min_used_codons": 0,
+    "ave_tree_depth": 0,
+    "max_tree_depth": 0,
+    "min_tree_depth": 0,
+    "ave_tree_nodes": 0,
+    "max_tree_nodes": 0,
+    "min_tree_nodes": 0,
+    "ave_fitness": 0,
+    "best_fitness": 0,
+    "time_taken": 0,
+    "total_time": 0,
+    "time_adjust": 0
 }
 
 
@@ -68,7 +68,7 @@ def get_stats(individuals, end=False):
         get_soo_stats(individuals, end)
 
     if params['SAVE_STATE'] and not params['DEBUG'] and \
-                            stats['gen'] % params['SAVE_STATE_STEP'] == 0:
+            stats['gen'] % params['SAVE_STATE_STEP'] == 0:
         # Save the state of the current evolutionary run.
         create_state(individuals)
 
@@ -110,13 +110,12 @@ def get_soo_stats(individuals, end):
 
     elif not params['SILENT']:
         # Print simple display output.
-        perc = stats['gen'] / (params['GENERATIONS']+1) * 100
+        perc = stats['gen'] / (params['GENERATIONS'] + 1) * 100
         stdout.write("Evolution: %d%% complete\r" % perc)
         stdout.flush()
 
     # Generate test fitness on regression problems
     if hasattr(params['FITNESS_FUNCTION'], "training_test") and end:
-
         # Save training fitness.
         trackers.best_ever.training_fitness = copy(trackers.best_ever.fitness)
 
@@ -149,6 +148,134 @@ def get_soo_stats(individuals, end):
         print_final_stats()
 
 
+def get_moo_stats(individuals, end):
+    """
+    Generate the statistics for an evolutionary run with multiple objectives.
+    Save statistics to utilities.trackers.stats_list. Print statistics. Save
+    fitness plot information.
+
+    :param individuals: A population of individuals for which to generate
+    statistics.
+    :param end: Boolean flag for indicating the end of an evolutionary run.
+    :return: Nothing.
+    """
+
+    # Compute the pareto front metrics for the population.
+    pareto = compute_pareto_metrics(individuals)
+
+    # Save first front in trackers. Sort arbitrarily along first objective.
+    trackers.best_ever = sorted(pareto.fronts[0], key=lambda x: x.fitness[0])
+
+    # Store stats about pareto fronts.
+    stats['pareto_fronts'] = len(pareto.fronts)
+    stats['first_front'] = len(pareto.fronts[0])
+
+    if end or params['VERBOSE'] or not params['DEBUG']:
+        # Update all stats.
+        update_stats(individuals, end)
+
+    # Save fitness plot information
+    if params['SAVE_PLOTS'] and not params['DEBUG']:
+
+        # Initialise empty array for fitnesses for all inds on first pareto
+        # front.
+        all_arr = [[] for _ in range(params['FITNESS_FUNCTION'].num_obj)]
+
+        # Generate array of fitness values.
+        fitness_array = [ind.fitness for ind in trackers.best_ever]
+
+        # Add paired fitnesses to array for graphing.
+        for fit in fitness_array:
+            for o in range(params['FITNESS_FUNCTION'].num_obj):
+                all_arr[o].append(fit[o])
+
+        if not end:
+            trackers.first_pareto_list.append(all_arr)
+
+            # Append empty array to best fitness list.
+            trackers.best_fitness_list.append([])
+
+            # Get best fitness for each objective.
+            for o, ff in \
+                    enumerate(params['FITNESS_FUNCTION'].fitness_functions):
+                # Get sorted list of all fitness values for objective "o"
+                fits = sorted(all_arr[o], reverse=ff.maximise)
+
+                # Append best fitness to trackers list.
+                trackers.best_fitness_list[-1].append(fits[0])
+
+        if params['VERBOSE'] or end:
+
+            # Plot best fitness for each objective.
+            for o, ff in \
+                    enumerate(params['FITNESS_FUNCTION'].fitness_functions):
+                to_plot = [i[o] for i in trackers.best_fitness_list]
+
+                # Plot fitness data for objective o.
+                plotname = ff.__class__.__name__ + str(o)
+
+                save_plot_from_data(to_plot, plotname)
+
+            # TODO: PonyGE2 can currently only plot moo problems with 2
+            #  objectives.
+            # Check that the number of fitness objectives is not greater than 2
+            if params['FITNESS_FUNCTION'].num_obj > 2:
+                s = "stats.stats.get_moo_stats\n" \
+                    "Warning: Plotting of more than 2 simultaneous " \
+                    "objectives is not yet enabled in PonyGE2."
+                print(s)
+
+            else:
+                save_pareto_fitness_plot()
+
+    # Print statistics
+    if params['VERBOSE'] and not end:
+        print_generation_stats()
+        print_first_front_stats()
+
+    elif not params['SILENT']:
+        # Print simple display output.
+        perc = stats['gen'] / (params['GENERATIONS'] + 1) * 100
+        stdout.write("Evolution: %d%% complete\r" % perc)
+        stdout.flush()
+
+    # Generate test fitness on regression problems
+    if hasattr(params['FITNESS_FUNCTION'], "training_test") and end:
+
+        for ind in trackers.best_ever:
+            # Iterate over all individuals in the first front.
+
+            # Save training fitness.
+            ind.training_fitness = copy(ind.fitness)
+
+            # Evaluate test fitness.
+            ind.test_fitness = params['FITNESS_FUNCTION'](ind, dist='test')
+
+            # Set main fitness as training fitness.
+            ind.fitness = ind.training_fitness
+
+    # Save stats to list.
+    if params['VERBOSE'] or (not params['DEBUG'] and not end):
+        trackers.stats_list.append(copy(stats))
+
+    # Save stats to file.
+    if not params['DEBUG']:
+
+        if stats['gen'] == 0:
+            save_stats_headers(stats)
+
+        save_stats_to_file(stats, end)
+
+        if params['SAVE_ALL']:
+            save_first_front_to_file(stats, end, stats['gen'])
+
+        elif params['VERBOSE'] or end:
+            save_first_front_to_file(stats, end)
+
+    if end and not params['SILENT']:
+        print_final_moo_stats()
+
+
 def update_stats(individuals, end):
     """
     Update all stats in the stats dictionary.
@@ -172,7 +299,7 @@ def update_stats(individuals, end):
     if params['CACHE']:
         stats['unique_inds'] = len(trackers.cache)
         stats['unused_search'] = 100 - stats['unique_inds'] / \
-                                       stats['total_inds'] * 100
+                                 stats['total_inds'] * 100
 
     # Genome Stats
     genome_lengths = [len(i.genome) for i in individuals]
@@ -246,4 +373,18 @@ def print_final_stats():
 
     print("  Phenotype:", trackers.best_ever.phenotype)
     print("  Genome:", trackers.best_ever.genome)
+    print_generation_stats()
+
+
+def print_final_moo_stats():
+    """
+    Prints a final review of the overall evolutionary process for
+    multi-objective problems.
+
+    :return: Nothing.
+    """
+
+    print("\n\nFirst Front:")
+    for ind in trackers.best_ever:
+        print(" ", ind)
     print_generation_stats()

@@ -1,14 +1,13 @@
 import numpy as np
+
 np.seterr(all="raise")
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.fitness.get_data import get_data
-from PonyGE2.src.utilities.fitness.math_functions import *
-from PonyGE2.src.utilities.fitness.optimize_constants import optimize_constants
+from algorithm.parameters import params
+from utilities.fitness.get_data import get_data
+from utilities.fitness.math_functions import *
+from utilities.fitness.optimize_constants import optimize_constants
 
-from PonyGE2.src.fitness.base_ff_classes.base_ff import base_ff
-
-#from pgliq2 import WA, OWA, minimo, maximo, concentrador, diluidor
+from fitness.base_ff_classes.base_ff import base_ff
 
 
 class supervised_learning(base_ff):
@@ -36,7 +35,7 @@ class supervised_learning(base_ff):
             get_data(params['DATASET_TRAIN'], params['DATASET_TEST'])
 
         # Find number of variables.
-        self.n_vars = np.shape(self.training_in)[0]
+        self.n_vars = np.shape(self.training_in)[1] # sklearn convention
 
         # Regression/classification-style problems use training and test data.
         if params['DATASET_TEST']:
@@ -69,6 +68,10 @@ class supervised_learning(base_ff):
         else:
             raise ValueError("Unknown dist: " + dist)
 
+        shape_mismatch_txt = """Shape mismatch between y and yhat. Please check
+that your grammar uses the `x[:, 0]` style, not `x[0]`. Please see change
+at https://github.com/PonyGE/PonyGE2/issues/130."""
+
         if params['OPTIMIZE_CONSTANTS']:
             # if we are training, then optimize the constants by
             # gradient descent and save the resulting phenotype
@@ -86,6 +89,10 @@ class supervised_learning(base_ff):
                 # phen will refer to x (ie test_in), and possibly to c
                 yhat = eval(phen)
                 assert np.isrealobj(yhat)
+                # check whether yhat is a constant or an array (see below).
+                if np.ndim(yhat) != 0: 
+                    if y.shape != yhat.shape:
+                        raise ValueError(shape_mismatch_txt)
 
                 # let's always call the error function with the
                 # true values first, the estimate second
@@ -95,6 +102,16 @@ class supervised_learning(base_ff):
             # phenotype won't refer to C
             yhat = eval(ind.phenotype)
             assert np.isrealobj(yhat)
+            # Phenotypes that don't refer to x are constants, ie will
+            # return a single value (not an array). That will work
+            # fine when we pass it to our error metric, but our shape
+            # mismatch check (re x[:, 0] v x[0]) will check the
+            # shape. So, only run it when yhat is an array, not when
+            # yhat is a single value. Note np.isscalar doesn't work
+            # here, see help(np.isscalar).
+            if np.ndim(yhat) != 0:
+                if y.shape != yhat.shape:
+                    raise ValueError(shape_mismatch_txt)
 
             # let's always call the error function with the true
             # values first, the estimate second

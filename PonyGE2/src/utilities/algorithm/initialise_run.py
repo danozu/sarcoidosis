@@ -5,9 +5,9 @@ from random import seed
 from socket import gethostname
 from time import time
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.stats import trackers
-from PonyGE2.src.utilities.stats.file_io import generate_folders_and_files
+from algorithm.parameters import params
+from utilities.stats import trackers
+from utilities.stats.file_io import generate_folders_and_files
 
 
 def initialise_run_params(create_files):
@@ -130,8 +130,9 @@ def set_param_imports():
 
                             try:
                                 # Import module and attribute and save.
-                                params[op] = return_attr_from_module(module_name,
-                                                                     attr_name)
+                                params[op] = return_attr_from_module(
+                                    module_name,
+                                    attr_name)
 
                             except Exception:
                                 s = "utilities.algorithm.initialise_run." \
@@ -149,21 +150,23 @@ def set_param_imports():
                     else:
                         # Just module name specified. Use default location.
 
-                        # If multiagent is specified need to change
+                        # If multi-agent is specified need to change
                         # how search and step module is called
-                        # Loop and step functions for multiagent is contained 
+                        # Loop and step functions for multi-agent is contained
                         # inside algorithm search_loop_distributed and 
                         # step_distributed respectively
 
                         if params['MULTIAGENT'] and \
-                        ( op == 'SEARCH_LOOP' or op == 'STEP' ) :
-                            # Define the directory structure for the multiagent search
+                                (op == 'SEARCH_LOOP' or op == 'STEP'):
+                            # Define the directory structure for the multi-agent search
                             # loop and step
-                            multiagent_ops = {'search_loop':'distributed_algorithm.search_loop' \
-                                                ,'step':'distributed_algorithm.step'}
+                            multiagent_ops = {
+                                'search_loop': 'distributed_algorithm.search_loop' \
+                                , 'step': 'distributed_algorithm.step'}
 
                             # Get module and attribute names
-                            module_name = ".".join([special_ops, multiagent_ops[op.lower()]])
+                            module_name = ".".join(
+                                [special_ops, multiagent_ops[op.lower()]])
                             attr_name = split_name[-1]
 
                         else:
@@ -207,7 +210,6 @@ def get_fit_func_imports():
         # List of multiple fitness functions given.
 
         for i, name in enumerate(params[op]):
-
             # Split import name based on "." to find nested modules.
             split_name = name.strip().split(".")
 
@@ -254,11 +256,16 @@ def return_attr_from_module(module_name, attr_name):
     :param attr_name: The name of the attribute.
     :return: The imported attribute from the module.
     """
-
+    import sys
+    print()
+    print()
+    print("directory:", sys.path[-1])
+    print()
+    print()
+    
     try:
         # Import module.
-        module = importlib.import_module('PonyGE2.src.' + module_name)
-       # module = importlib.import_module(module_name)
+        module = importlib.import_module(module_name)
 
     except ModuleNotFoundError:
         s = "utilities.algorithm.initialise_run.return_attr_from_module\n" \

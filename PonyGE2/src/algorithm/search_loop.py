@@ -1,10 +1,12 @@
 from multiprocessing import Pool
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.fitness.evaluation import evaluate_fitness
-from PonyGE2.src.stats.stats import stats, get_stats
-from PonyGE2.src.utilities.stats import trackers
-from PonyGE2.src.operators.initialisation import initialisation
-from PonyGE2.src.utilities.algorithm.initialise_run import pool_init
+
+from algorithm.parameters import params
+from fitness.evaluation import evaluate_fitness
+from operators.initialisation import initialisation
+from stats.stats import get_stats, stats
+from utilities.algorithm.initialise_run import pool_init
+from utilities.stats import trackers
+
 
 def search_loop():
     """
@@ -16,7 +18,7 @@ def search_loop():
     """
 
     if params['MULTICORE']:
-        # initialize pool once, if mutlicore is enabled
+        # initialize pool once, if multi-core is enabled
         params['POOL'] = Pool(processes=params['CORES'], initializer=pool_init,
                               initargs=(params,))  # , maxtasksperchild=1)
 
@@ -30,7 +32,7 @@ def search_loop():
     get_stats(individuals)
 
     # Traditional GE
-    for generation in range(1, (params['GENERATIONS']+1)):
+    for generation in range(1, (params['GENERATIONS'] + 1)):
         stats['gen'] = generation
 
         # New generation
@@ -51,23 +53,23 @@ def search_loop_from_state():
     :return: The final population after the evolutionary process has run for
     the specified number of generations.
     """
-    
+
     individuals = trackers.state_individuals
-    
+
     if params['MULTICORE']:
-        # initialize pool once, if mutlicore is enabled
+        # initialize pool once, if multi-core is enabled
         params['POOL'] = Pool(processes=params['CORES'], initializer=pool_init,
                               initargs=(params,))  # , maxtasksperchild=1)
-    
+
     # Traditional GE
     for generation in range(stats['gen'] + 1, (params['GENERATIONS'] + 1)):
         stats['gen'] = generation
-        
+
         # New generation
         individuals = params['STEP'](individuals)
-    
+
     if params['MULTICORE']:
         # Close the workers pool (otherwise they'll live on forever).
         params['POOL'].close()
-    
+
     return individuals

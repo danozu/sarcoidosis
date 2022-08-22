@@ -1,9 +1,10 @@
-from PonyGE2.src.fitness.evaluation import evaluate_fitness
-from PonyGE2.src.operators.crossover import crossover
-from PonyGE2.src.operators.mutation import mutation
-from PonyGE2.src.operators.replacement import replacement, steady_state
-from PonyGE2.src.operators.selection import selection
-from PonyGE2.src.stats.stats import get_stats
+from fitness.evaluation import evaluate_fitness
+from operators.crossover import crossover
+from operators.mutation import mutation
+from operators.replacement import replacement, steady_state
+from operators.selection import selection
+from stats.stats import get_stats
+
 
 def step(individuals):
     """
@@ -35,7 +36,7 @@ def step(individuals):
 
     # Generate statistics for run so far
     get_stats(individuals)
-    
+
     return individuals
 
 
@@ -48,7 +49,7 @@ def steady_state_step(individuals):
     evolutionary generation will be imposed.
     :return: The next generation of the population.
     """
-    
+
     individuals = steady_state(individuals)
-    
-    return individuals 
+
+    return individuals

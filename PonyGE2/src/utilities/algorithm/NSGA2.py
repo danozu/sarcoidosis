@@ -1,8 +1,8 @@
 from collections import defaultdict
-from numpy import isnan
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.fitness.math_functions import percentile
+from algorithm.parameters import params
+from numpy import isnan
+from utilities.fitness.math_functions import percentile
 
 
 def compute_pareto_metrics(population):
@@ -23,7 +23,7 @@ def compute_pareto_metrics(population):
 
 
 def sort_non_dominated(population):
-    """Sort the first *k* *population* into different nondomination levels
+    """Sort the first *k* *population* into different non-domination levels
     using the "Fast Nondominated Sorting Approach" proposed by Deb et al.,
     see [Deb2002]_. This algorithm has a time complexity of :math:`O(MN^2)`,
     where :math:`M` is the number of objectives and :math:`N` the number of
@@ -32,7 +32,7 @@ def sort_non_dominated(population):
     :param population: A list of individuals to select from.
 
     :returns: A list of Pareto fronts (lists), the first list includes
-              nondominated individuals.
+              non-dominated individuals.
 
     .. [Deb2002] Deb, Pratab, Agarwal, and Meyarivan, "A fast elitist
        non-dominated sorting genetic algorithm for multi-objective
@@ -100,13 +100,13 @@ def sort_non_dominated(population):
 
 def dominates(individual1, individual2):
     """
-    Returns whether or not *indvidual1* dominates *indvidual2*. An individual
+    Returns whether or not *individual1* dominates *individual2*. An individual
     dominates another if all fitness values are at least as good on all
     objectives, and strictly better than on at least one objective.
 
     :param individual1: The individual that would be dominated.
     :param individual2: The individual dominant.
-    :returns: :obj:`True` if indvidual_1 dominates indvidual_2,
+    :returns: :obj:`True` if *individual1* dominates *individual2*,
               :obj:`False` otherwise.
     """
 
@@ -235,7 +235,7 @@ def crowded_comparison_operator(self, other, pareto):
     :return: True if *self* is better than *other* and False otherwise.
     """
 
-    # Between two solutions with differing nondomination ranks, we prefer the
+    # Between two solutions with differing non-domination ranks, we prefer the
     # solution with the lower (better) rank. Otherwise, if both solutions
     # belong to the same front, then we prefer the solution that is located in
     # a lesser crowded region, i.e., with the larger crowding distance.
@@ -266,7 +266,7 @@ def get_population_iqr(population, n_objectives):
 
         # Sort the population with respect to the current objective.
         sorted_pop = sorted(population, key=lambda ind:
-                            params['FITNESS_FUNCTION'].value(ind.fitness, m),
+        params['FITNESS_FUNCTION'].value(ind.fitness, m),
                             reverse=params['FITNESS_FUNCTION'].
                             fitness_functions[m].maximise)
 

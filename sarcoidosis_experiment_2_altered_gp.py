@@ -133,7 +133,7 @@ if __name__ == '__main__':
 
         model = Pipeline(estimators)
 
-        options = {'Importance', 'GP'} 
+        options = {'GP'} 
 
         gp_grid_result, gp_class, gp_auc, gp_probs, gp_preds, gp_score, gp_params, gp_features, gp_cc = evaluate_grid_model(
             X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)

@@ -1,7 +1,7 @@
 from random import sample
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.algorithm.NSGA2 import compute_pareto_metrics, \
+from algorithm.parameters import params
+from utilities.algorithm.NSGA2 import compute_pareto_metrics, \
     crowded_comparison_operator
 
 
@@ -113,18 +113,18 @@ def pareto_tournament(population, pareto, tournament_size):
     :param tournament_size: The size of the tournament.
     :return: The selected individuals.
     """
-    
+
     # Initialise no best solution.
     best = None
-    
+
     # Randomly sample *tournament_size* participants.
     participants = sample(population, tournament_size)
-    
+
     for participant in participants:
         if best is None or crowded_comparison_operator(participant, best,
                                                        pareto):
             best = participant
-    
+
     return best
 
 

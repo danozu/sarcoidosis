@@ -5,17 +5,18 @@ Created on Sat Jun 13 13:12:55 2020
 @author: allan
 """
 
-from PonyGE2.src.utilities.algorithm.general import check_python_version
+from utilities.algorithm.general import check_python_version
 check_python_version()
 
 import numpy as np
 import pandas as pd
 import math
-from sklearn.utils.validation import check_X_y, check_array
+from sklearn.utils.validation import check_X_y#, check_array
 from sklearn.utils.multiclass import check_classification_targets
 
-from PonyGE2.src.algorithm.parameters import params, set_params,load_params
-from PonyGE2.src.utilities.fitness.math_functions import *
+from algorithm.parameters import params, set_params,load_params
+from utilities.fitness.math_functions import add, mul, sub, pdiv, WA, OWA, minimum, maximum, dilator, concentrator
+
 import sys
 
 from abc import ABCMeta, abstractmethod
@@ -44,7 +45,6 @@ class BaseSymbolic(BaseEstimator, metaclass=ABCMeta):
                  TOURNAMENT_SIZE=2,
                  MAX_TREE_DEPTH=17,
                  RANDOM_SEED=7,
-    #             data_address='Sarcoidose/Train1.csv',
                  ):
         self.CROSSOVER_PROBABILITY = CROSSOVER_PROBABILITY
         self.MUTATION_PROBABILITY = MUTATION_PROBABILITY
@@ -54,7 +54,6 @@ class BaseSymbolic(BaseEstimator, metaclass=ABCMeta):
         self.TOURNAMENT_SIZE = TOURNAMENT_SIZE
         self.MAX_TREE_DEPTH = MAX_TREE_DEPTH
         self.RANDOM_SEED = RANDOM_SEED
- #       self.data_address = data_address
 
 
     def fit(self, X, y):
@@ -84,12 +83,13 @@ class BaseSymbolic(BaseEstimator, metaclass=ABCMeta):
             head.append('x'+str(j))
         head.append('class')
 
-        #pd.DataFrame(data).to_csv(r"../datasets/Sarcoidose/Train" + str(i) + ".csv", header=head, sep=" ", index=None)
-        #pd.DataFrame(data).to_csv(r"../datasets/Sarcoidose/Test" + str(i) + ".csv", header=head, sep=" ", index=None)
-        pd.DataFrame(data).to_csv(r"PonyGE2/datasets/Sarcoidose/Train" + str(i) + ".csv", header=head, sep=" ", index=None)
-        pd.DataFrame(data).to_csv(r"PonyGE2/datasets/Sarcoidose/Test" + str(i) + ".csv", header=head, sep=" ", index=None)
+        pd.DataFrame(data).to_csv(r"../datasets/Sarcoidose/Train" + str(i) + ".csv", header=head, sep=" ", index=None)
+        pd.DataFrame(data).to_csv(r"../datasets/Sarcoidose/Test" + str(i) + ".csv", header=head, sep=" ", index=None)
+        #pd.DataFrame(data).to_csv(r"PonyGE2/datasets/Sarcoidose/Train" + str(i) + ".csv", header=head, sep=" ", index=None)
+        #pd.DataFrame(data).to_csv(r"PonyGE2/datasets/Sarcoidose/Test" + str(i) + ".csv", header=head, sep=" ", index=None)
 
-        load_params(r'PonyGE2/parameters/classification.txt')
+        #load_params(r'PonyGE2/parameters/classification.txt')
+        load_params(r'../parameters/classification.txt')
 
         params['CROSSOVER_PROBABILITY'] = self.CROSSOVER_PROBABILITY
         params['MUTATION_PROBABILITY'] = self.MUTATION_PROBABILITY        
@@ -124,26 +124,22 @@ class ponyge(BaseSymbolic, ClassifierMixin):
     def __init__(self,
                  CROSSOVER_PROBABILITY=0.8,
                  MUTATION_PROBABILITY=0.01,
-                 #ERROR_METRIC='f1_score',
                  GENERATIONS = 10,
                  POPULATION_SIZE=10,
                  MAX_INIT_TREE_DEPTH=10,
                  TOURNAMENT_SIZE=2,
                  MAX_TREE_DEPTH=17,
                  RANDOM_SEED=7,
-      #           data_address='Sarcoidose/Train1.csv',
                  ):
          super(ponyge, self).__init__(
              CROSSOVER_PROBABILITY = CROSSOVER_PROBABILITY,
              MUTATION_PROBABILITY = MUTATION_PROBABILITY,
-             # self.ERROR_METRIC = ERROR_METRIC,
              GENERATIONS = GENERATIONS,
              POPULATION_SIZE = POPULATION_SIZE,
              MAX_INIT_TREE_DEPTH = MAX_INIT_TREE_DEPTH,
              TOURNAMENT_SIZE = 2,
              MAX_TREE_DEPTH = MAX_TREE_DEPTH,
              RANDOM_SEED = RANDOM_SEED)
-     #        data_address = data_address)
 
     def predict_proba(self, X):
         """Predict probabilities on test vectors X.

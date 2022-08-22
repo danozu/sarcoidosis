@@ -1,9 +1,9 @@
-from os import path, getcwd, makedirs
-from shutil import rmtree
 from copy import copy
+from os import getcwd, makedirs, path
+from shutil import rmtree
 
-from PonyGE2.src.algorithm.parameters import params
-from PonyGE2.src.utilities.stats import trackers
+from algorithm.parameters import params
+from utilities.stats import trackers
 
 
 def save_stats_to_file(stats, end=False):
@@ -94,11 +94,10 @@ def save_first_front_to_file(stats, end=False, name="first"):
     orig_file_path = copy(params['FILE_PATH'])
 
     # Define the new file path.
-    params['FILE_PATH'] = path.join(orig_file_path, str(name)+"_front")
+    params['FILE_PATH'] = path.join(orig_file_path, str(name) + "_front")
 
     # Check if the front folder exists already
     if path.exists(params['FILE_PATH']):
-
         # Remove previous files.
         rmtree(params['FILE_PATH'])
 
@@ -122,29 +121,27 @@ def generate_folders_and_files():
 
     if params['EXPERIMENT_NAME']:
         # Experiment manager is being used.
-        #path_1 = path.join(getcwd(), "..", "results")
-        path_1 = path.join(getcwd(), "PonyGE2", "results")
+        path_1 = path.join(getcwd(), "..", "results")
 
         if not path.isdir(path_1):
             # Create results folder.
-            makedirs(path_1)
+            makedirs(path_1, exist_ok=True)
 
         # Set file path to include experiment name.
         params['FILE_PATH'] = path.join(path_1, params['EXPERIMENT_NAME'])
 
     else:
         # Set file path to results folder.
-        #params['FILE_PATH'] = path.join(getcwd(), "..", "results")
-        params['FILE_PATH'] = path.join(getcwd(), "PonyGE2", "results")
+        params['FILE_PATH'] = path.join(getcwd(), "..", "results")
 
     # Generate save folders
     if not path.isdir(params['FILE_PATH']):
-        makedirs(params['FILE_PATH'])
+        makedirs(params['FILE_PATH'], exist_ok=True)
 
     if not path.isdir(path.join(params['FILE_PATH'],
                                 str(params['TIME_STAMP']))):
         makedirs(path.join(params['FILE_PATH'],
-                        str(params['TIME_STAMP'])))
+                           str(params['TIME_STAMP'])), exist_ok=True)
 
     params['FILE_PATH'] = path.join(params['FILE_PATH'],
                                     str(params['TIME_STAMP']))
@@ -167,7 +164,6 @@ def save_params_to_file():
     col_width = max(len(param) for param in params.keys())
 
     for param in sorted(params.keys()):
-
         # Create whitespace buffer for pretty printing/saving.
         spaces = [" " for _ in range(col_width - len(param))]
         savefile.write(str(param) + ": " + "".join(spaces) +

@@ -1,5 +1,5 @@
-from PonyGE2.src.stats.stats import stats
-from PonyGE2.src.algorithm.parameters import params
+from algorithm.parameters import params
+from stats.stats import stats
 
 
 def clean_stats():
@@ -9,10 +9,10 @@ def clean_stats():
     
     :return: Nothing.
     """
-    
+
     if not params['CACHE']:
         stats.pop('unique_inds')
         stats.pop('unused_search')
-    
+
     if not params['MUTATE_DUPLICATES']:
         stats.pop('regens')

@@ -1,38 +1,23 @@
 import time
-#from scipy.io import loadmat
-#import pandas as pd
-#import numpy as np
-#import functools  # flatten list of list
-#import operator  # flatten List of list
-from util import evaluate_grid_model, evaluate_bayes_model, cmp_class_results
+import pandas as pd
+from util import evaluate_grid_model
 from plot_roc import plotroc
 from scipy.io import loadmat
 import functools  # flatten list of list
 import operator  # flatten List of list
-#from matplotlib import pyplot
-#from pandas import read_csv
-#from pandas import set_option
-from sklearn.preprocessing import StandardScaler
-#from sklearn.model_selection import train_test_split
-#from sklearn.model_selection import KFold
-#from sklearn.model_selection import cross_val_score
-#from sklearn.model_selection import GridSearchCV
-from sklearn.pipeline import Pipeline
-#from skopt.space import Real, Categorical, Integer
-from sklearn import metrics
-#import matplotlib.pyplot as plt
-#from sklearn.model_selection import StratifiedKFold
-#from sklearn.linear_model import LogisticRegression
 
-from fuzzify import *
-from genetic_ponyge import *
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn import metrics
+
+from genetic_ponyge import ponyge
 
 if __name__ == '__main__':
     start = time.time()
 
     Run = 1
 
-    filename = "sarcoidose_experiment_2_normal"
+    filename = "sarcoidosis_experiment_2_normal_ge"
     filename_dataset = "sn.csv"
     filename_crossval = "sn_cvi.mat"
     filename_matlab = "Exp_sarcoidose_sn.csv"
@@ -64,12 +49,10 @@ if __name__ == '__main__':
     print(test_index)
 
     # Obtain the result for best FOT parameter from matlab
-
     matlab_df = pd.read_csv(filename_matlab, delimiter=',', encoding="utf-8-sig")
     #
     print(matlab_df.head())
     print(matlab_df.columns)
-    # array = bfp_df.values
     bfp = matlab_df['BFP']
 
     # Copy the cc values from Matlab
@@ -79,35 +62,24 @@ if __name__ == '__main__':
     # Obtain the datset
     df = pd.read_csv(filename_dataset)
 
-    # Fuzzificando o dataframe
-    dominio = matrixDomain(df)
-    datapd = fuzzifyDataFrame(df, 3, dominio)  # 17*3 colunas
-    _, cfuzzificadas = np.shape(datapd)  # cfuzzificadas=50
-
-    cols = list(datapd.columns)
-    cols.pop()
+    cols = list(df.columns)
     cols.pop()
 
-    array = datapd.values
+    array = df.values
 
-    print(datapd.describe())
-
-    #
+    print(df.describe())
     df['class'].value_counts().plot(kind='bar', title='Count (class)')
 
-    X = array[:, 0:(cfuzzificadas - 2)]
-    Y = array[:, (cfuzzificadas - 1)]
-
-
-    # crossval_index = get_crossval_index(X, Y, 10, 1)
+    X = array[:, 0:16]
+    Y = array[:, 16]
 
     models = [
         {
-            'label': 'ponyGE',
-            'model': 'ponyGE',
+            'label': 'GE',
+            'model': 'GE',
         }
     ]
-
+    
     if Run == 1:
         seed = 7
         num_folds = 10
@@ -118,65 +90,70 @@ if __name__ == '__main__':
         print("seed: %f" % (seed))
         print("n_iter: %d" % (n_iter))
         print("scoring: %s" % (scoring))
-
-        #==========
-        # PGLIQ_APF
-        #==========
-        print('-- ponyGE --')
+        
+        #======================
+        # Grammatical Evolution
+        #======================
+        print('-- GE --')
 
         estimators = []
-        estimators.append(('ponyGE', ponyge(RANDOM_SEED=seed, MAX_INIT_TREE_DEPTH=4, MAX_TREE_DEPTH=5)))
+        estimators.append(('standardize', StandardScaler()))
+        estimators.append(('GE', ponyge(CROSSOVER_PROBABILITY=0.8, MUTATION_PROBABILITY=0.01, 
+                                            MAX_TREE_DEPTH=17, RANDOM_SEED=seed)))
         model = Pipeline(estimators)
 
         param_grid = {
-            'ponyGE__GENERATIONS': [50, 100, 200],
-            'ponyGE__POPULATION_SIZE': [100, 200, 500, 1000, 3000]
-
+            'GE__MAX_INIT_TREE_DEPTH': [4, 12],
+            'GE__TOURNAMENT_SIZE': [2, 7, 20],
+            'GE__GENERATIONS': [5, 20, 50, 100, 200],
+            'GE__POPULATION_SIZE': [100, 300, 500, 1000, 3000],
         }
 
         options = {'ponyge'}
 
-        pgliq_apf_grid_result, pgliq_apf_class, pgliq_apf_auc, pgliq_apf_probs, pgliq_apf_preds, pgliq_apf_score, pgliq_apf_params, pgliq_apf_features, pgliq_apf_cc = evaluate_grid_model(
+        ge_grid_result, ge_class, ge_auc, ge_probs, ge_preds, ge_score, ge_params, ge_features, ge_cc = evaluate_grid_model(
             X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
-        classes = functools.reduce(operator.iconcat, pgliq_apf_class, [])
-        y_probs = functools.reduce(operator.iconcat, pgliq_apf_probs, [])  # flatten the list of lists
+        classes = functools.reduce(operator.iconcat, ge_class, [])
+        y_probs = functools.reduce(operator.iconcat, ge_probs, [])  # flatten the list of lists
         fpr, tpr, thresholds = metrics.roc_curve(classes, y_probs, drop_intermediate=False)
         print(f'AUC = {metrics.auc(fpr, tpr)}')
 
         # Store the result in dataframe
-
-        class_df = pd.DataFrame(columns=['BFP', 'ponyGE'])
+        
+        class_df = pd.DataFrame(columns=['BFP', 'GE'])
         class_df['BFP'] = matlab_df['class']  # comes from matlab
-        class_df['ponyGE'] = functools.reduce(operator.iconcat, pgliq_apf_class, [])
+        class_df['GE'] = functools.reduce(operator.iconcat, ge_class, [])
+
+        class_df = pd.DataFrame(columns=['BFP'])
+        class_df['BFP'] = matlab_df['class']  # comes from matlab
+        class_df['GE'] = functools.reduce(operator.iconcat, ge_class, [])
 
         class_df.to_csv(filename_class, index=False)
 
-        params_df = pd.DataFrame(columns=['ponyGE'])
+        params_df = pd.DataFrame(columns=['GE'])
 
-        params_df['ponyGE'] = pd.Series(pgliq_apf_params)  # Transform to series
+        params_df['GE'] = pd.Series(ge_params)  # Transform to series
 
         params_df.to_csv(filename_params, index=False)
 
-        cc_df = pd.DataFrame(columns=['ponyGE'])
+        cc_df = pd.DataFrame(columns=['GE'])
 
-        cc_df['ponyGE'] = functools.reduce(operator.iconcat, pgliq_apf_cc, [])  # Transform to series
+        cc_df['GE'] = functools.reduce(operator.iconcat, ge_cc, [])  # Transform to series
 
         cc_df.to_csv(filename_cc, index=False)
 
         # Put the results together in dataframe
-        result_df = pd.DataFrame(columns=['BFP', 'ponyGE', 'class'])
+        result_df = pd.DataFrame(columns=['BFP', 'GE', 'class'])
         result_df['BFP'] = bfp  # comes from matlab
-        result_df['ponyGE'] = functools.reduce(operator.iconcat, pgliq_apf_probs, [])  # flatten the list of lists
-        result_df['class'] = functools.reduce(operator.iconcat, pgliq_apf_class, [])  # flatten the list of lists
+        result_df['GE'] = functools.reduce(operator.iconcat, ge_probs, [])  # flatten the list of lists
+        result_df['class'] = functools.reduce(operator.iconcat, ge_class, [])  # flatten the list of lists
         
         result_df.to_csv(filename_result, index=False)
 
     else:
         print('Obtained results from files')
         result_df = pd.read_csv(filename_result)
-        # auc_df = pd.read_csv(filename_auc)
-        # cc_df = pd.read_csv(filename_cc)
 
     # Prepare to show the results
 
