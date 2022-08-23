@@ -110,7 +110,7 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
-        estimators.append(('GP', SymbolicClassifier(random_state=seed, feature_names=cols,
+        estimators.append(('GP', SymbolicClassifier(random_state=seed, #feature_names=cols,
                                                     metric=roc_auc,
                                                     stopping_criteria=0.01, n_jobs=16,
                                                     p_subtree_mutation=0.01, 
