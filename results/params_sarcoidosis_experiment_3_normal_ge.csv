@@ -1,0 +1,11 @@
+ponyGE
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 500}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 500}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 100}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 50, 'ponyGE__POPULATION_SIZE': 3000}"
+"{'fs__n_features_to_select': 8, 'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 1000}"
+"{'fs__n_features_to_select': 12, 'ponyGE__GENERATIONS': 100, 'ponyGE__POPULATION_SIZE': 1000}"
+"{'fs__n_features_to_select': 8, 'ponyGE__GENERATIONS': 200, 'ponyGE__POPULATION_SIZE': 3000}"
