@@ -64,19 +64,11 @@ if __name__ == '__main__':
     matlab_cc_df = pd.read_csv(filename_matlab_cc, delimiter=',', encoding="utf-8-sig")
     bfp_cc = matlab_cc_df['BFP']
 
-    # Obtain the datset
+    # Obtain the dataset
     df = pd.read_csv(filename_dataset)
 
     cols = list(df.columns)
     cols.pop()
-
-    array = df.values
-
-    print(df.describe())
-    df['class'].value_counts().plot(kind='bar', title='Count (class)')
-
-    X = array[:, 0:16]
-    Y = array[:, 16]
 
     models = [
         {
@@ -144,7 +136,7 @@ if __name__ == '__main__':
         options = {'Importance', 'GP'} 
 
         gp_grid_result, gp_class, gp_auc, gp_probs, gp_preds, gp_score, gp_params, gp_features, gp_cc = evaluate_grid_model(
-            X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+            df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, gp_class, [])
         y_probs = functools.reduce(operator.iconcat, gp_probs, [])  # flatten the list of lists

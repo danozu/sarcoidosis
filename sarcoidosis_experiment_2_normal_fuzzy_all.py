@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     Run = 1
 
-    filename = "sarcoidosis_experiment_2_normal_all"
+    filename = "sarcoidosis_experiment_2_normal_fuzzy_all"
     filename_dataset = "sn.csv"
     filename_crossval = "sn_cvi.mat"
     filename_matlab = "Exp_sarcoidose_sn.csv"
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     matlab_cc_df = pd.read_csv(filename_matlab_cc, delimiter=',', encoding="utf-8-sig")
     bfp_cc = matlab_cc_df['BFP']
 
-    # Obtain the datset
+    # Obtain the dataset
     df = pd.read_csv(filename_dataset)
 
     cols = list(df.columns)
@@ -141,7 +141,7 @@ if __name__ == '__main__':
             'SVM__kernel': ['rbf']
         }
 
-        options = { }
+        options = {'fuzzy'}
 
         svm_grid_result, svm_class, svm_auc, svm_probs, svm_preds, svm_score, svm_params, svm_features, svm_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -165,7 +165,7 @@ if __name__ == '__main__':
             'KNN__weights': ['distance']
         }
 
-        options = { }
+        options = {'fuzzy'}
 
         knn_grid_result, knn_class, knn_auc, knn_probs, knn_preds, knn_score, knn_params, knn_features, knn_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -188,7 +188,7 @@ if __name__ == '__main__':
         estimators.append(('RF', RandomForestClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'fuzzy'}
 
         rf_grid_result, rf_class, rf_auc, rf_probs, rf_preds, rf_score, rf_params, rf_features, rf_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -214,7 +214,7 @@ if __name__ == '__main__':
         estimators.append(('ADAB', AdaBoostClassifier(base_estimator=DTC, random_state=seed)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'fuzzy'}
 
         adab_grid_result, adab_class, adab_auc, adab_probs, adab_preds, adab_score, adab_params, adab_features, adab_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -238,7 +238,7 @@ if __name__ == '__main__':
         estimators.append(('LGB', LGBMClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'fuzzy'}
 
         lgb_grid_result, lgb_class, lgb_auc, lgb_probs, lgb_preds, lgb_score, lgb_params, lgb_features, lgb_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -260,6 +260,9 @@ if __name__ == '__main__':
         estimators.append(('standardize', StandardScaler()))
         estimators.append(('XGB', XGBClassifier(random_state=seed)))
         model = Pipeline(estimators)
+        
+        options = {'fuzzy'}
+        
         xgb_grid_result, xgb_class, xgb_auc, xgb_probs, xgb_preds, xgb_score, xgb_params, xgb_features, xgb_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
@@ -284,7 +287,7 @@ if __name__ == '__main__':
             'DT__splitter': ['best', 'random']
         }
 
-        options = {'DT'}
+        options = {'DT', 'fuzzy'}
 
         dt_grid_result, dt_class, dt_auc, dt_probs, dt_preds, dt_score, dt_params, dt_features, dt_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -310,7 +313,7 @@ if __name__ == '__main__':
         estimators.append(('LOGR', LogisticRegression(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'LOGR'}
+        options = {'LOGR', 'fuzzy'}
 
         log_grid_result, log_class, log_auc, log_probs, log_preds, log_score, log_params, log_features, log_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)

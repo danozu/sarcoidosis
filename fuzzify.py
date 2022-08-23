@@ -11,7 +11,7 @@ import pandas as pd
 import re
 import skfuzzy as fuzz
 
-def matrixDomain(DataFrame):
+def matrixDomain(DataFrame, train_index):
     
     df = DataFrame.copy() #necessário para que a função não altere o dataframe original
     
@@ -36,7 +36,15 @@ def matrixDomain(DataFrame):
     _, numColumnsCategorical = np.shape(dataCategorical)
     
     #Vetores com os limites mínimo e máximo dos dados reais
-    minimum, maximum = dataReal.min(), dataReal.max()
+    minimum = np.zeros([numColumnsReal], dtype=float)
+    maximum = np.zeros([numColumnsReal], dtype=float)
+    array = dataReal.values
+    X_train = array[train_index == 1.0]
+    for i in range(numColumnsReal):
+        minimum[i] = min(X_train[:,i])
+        maximum[i] = max(X_train[:,i])
+    
+    #minimum, maximum = dataReal.min(), dataReal.max()
     
     #Verificação de segurança
     if (numColumnsReal + numColumnsCategorical) != numColumns:
@@ -64,7 +72,7 @@ def matrixDomain(DataFrame):
     
     return matrixDomain
 
-def fuzzifyDataFrame(DataFrame,nSets,matrixDomain):
+def fuzzifyDataFrame(DataFrame, nSets, matrixDomain):
     
     df = DataFrame.copy() #necessário para que a função não altere o dataframe original
     
@@ -137,7 +145,7 @@ def fuzzifyDataFrame(DataFrame,nSets,matrixDomain):
     #Caso seja um array, cada posição faz referência a uma coluna com dados no dataframe
     #A posição referente a uma coluna categórica deve conter exatamente o mesmo número de 
     #categorias em que os dados estão divididos
-    j,k = 0,0 #índices dos nomes de colunas com dados reais e categóricos, respectivamente
+    j, k = 0, 0 #índices dos nomes de colunas com dados reais e categóricos, respectivamente
     if type(nSets) == int:
         if nSets < 2:
             print("Number of sets must be greater than or equal to 2")
@@ -213,15 +221,15 @@ def fuzzifyDataFrame(DataFrame,nSets,matrixDomain):
             actualColumn += arraySets[i] #todas as colunas referentes aos conjuntos da variável atual foram preenchidas
             actualIndexSets += 1
                 
-        if matrixDomain[i,0] != matrixDomain[i,1]: #dados reais
+        else:# matrixDomain[i,0] != matrixDomain[i,1]: #dados reais
             lowerBound = matrixDomain[i,0] #início do domínio
             upperBound = matrixDomain[i,1] #fim do domínio
-            width = (upperBound - lowerBound)/(arraySets[i]-1) #largura do conjunto fuzzy, isto é, a largura da subida ou da descida
-            step = (upperBound - lowerBound)/1000
+            width = (upperBound - lowerBound) / (arraySets[i] - 1) #largura do conjunto fuzzy, isto é, a largura da subida ou da descida
+            step = (upperBound - lowerBound) / 1000
             
             #fuzzificação
             
-            x = np.arange(lowerBound, upperBound+step, step)
+            x = np.arange(lowerBound, upperBound + step, step)
 
             qual = [[[] for _ in range(validNumberRows)] for _ in range(arraySets[i])] #conjuntos fuzzy
             qual_level = [[] for _ in range(arraySets[i])] #valores de pertinência
@@ -246,18 +254,17 @@ def fuzzifyDataFrame(DataFrame,nSets,matrixDomain):
             c = upperBound + step
             qual[arraySets[i]-1] = fuzz.trimf(x, [a, b, c])
             
-            
             m = 0
             for index in range(validNumberRows):
                 data = DataFrame.loc[validIndexes[m]][i]
                 #para evitar problemas com as extremidades
-                if data == lowerBound:
+                if data <= lowerBound:
                     qual_level[0] = 1
                     pertinenceMatrix[validIndexes[m],actualColumn] = 1
                     for k in range(arraySets[i]-1):
                         qual_level[k+1] = 0
                         pertinenceMatrix[validIndexes[m],actualColumn+k+1] = 0
-                elif data == upperBound:
+                elif data >= upperBound:
                     qual_level[arraySets[i]-1] = 1
                     pertinenceMatrix[validIndexes[m],actualColumn+arraySets[i]-1] = 1
                     for k in range(arraySets[i]-1):

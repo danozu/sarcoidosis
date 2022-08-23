@@ -70,19 +70,11 @@ if __name__ == '__main__':
     matlab_cc_df = pd.read_csv(filename_matlab_cc, delimiter=',', encoding="utf-8-sig")
     bfp_cc = matlab_cc_df['BFP']
 
-    # Obtain the datset
+    # Obtain the dataset
     df = pd.read_csv(filename_dataset)
 
     cols = list(df.columns)
     cols.pop()
-
-    array = df.values
-
-    print(df.describe())
-    df['class'].value_counts().plot(kind='bar', title='Count (class)')
-
-    X = array[:, 0:16]
-    Y = array[:, 16]
 
     models = [
         {
@@ -160,7 +152,7 @@ if __name__ == '__main__':
         options = {'Importance': True}
 
         svm_grid_result, svm_class, svm_auc, svm_probs, svm_preds, svm_score, svm_params, svm_features, svm_cc = evaluate_grid_model(
-            X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+            df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, svm_class, [])
         y_probs = functools.reduce(operator.iconcat, svm_probs, [])  # flatten the list of lists
@@ -186,7 +178,7 @@ if __name__ == '__main__':
         options = {'Importance': True}
 
         knn_grid_result, knn_class, knn_auc, knn_probs, knn_preds, knn_score, knn_params, knn_features, knn_cc = evaluate_grid_model(
-            X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+            df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, knn_class, [])
         y_probs = functools.reduce(operator.iconcat, knn_probs, [])  # flatten the list of lists
@@ -211,7 +203,7 @@ if __name__ == '__main__':
         options = {'Importance': True}
 
         rf_grid_result, rf_class, rf_auc, rf_probs, rf_preds, rf_score, rf_params, rf_features, rf_cc = evaluate_grid_model(
-                X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+                df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, rf_class, [])
         y_probs = functools.reduce(operator.iconcat, rf_probs, [])  # flatten the list of lists
@@ -239,7 +231,7 @@ if __name__ == '__main__':
         options = {'Importance': True}
 
         adab_grid_result, adab_class, adab_auc, adab_probs, adab_preds, adab_score, adab_params, adab_features, adab_cc = evaluate_grid_model(
-                X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+                df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, adab_class, [])
         y_probs = functools.reduce(operator.iconcat, adab_probs, [])  # flatten the list of lists
@@ -265,7 +257,7 @@ if __name__ == '__main__':
         options = {'Importance': True}
 
         lgb_grid_result, lgb_class, lgb_auc, lgb_probs, lgb_preds, lgb_score, lgb_params, lgb_features, lgb_cc = evaluate_grid_model(
-                X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+                df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, lgb_class, [])
         y_probs = functools.reduce(operator.iconcat, lgb_probs, [])  # flatten the list of lists
@@ -286,8 +278,11 @@ if __name__ == '__main__':
         estimators.append(('fs', feat_selection))
         estimators.append(('XGB', XGBClassifier(random_state=seed)))
         model = Pipeline(estimators)
+        
+        options = {'Importance': True}
+        
         xgb_grid_result, xgb_class, xgb_auc, xgb_probs, xgb_preds, xgb_score, xgb_params, xgb_features, xgb_cc = evaluate_grid_model(
-                X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+                df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, xgb_class, [])
         y_probs = functools.reduce(operator.iconcat, xgb_probs, [])  # flatten the list of lists
@@ -312,10 +307,10 @@ if __name__ == '__main__':
             'DT__splitter': ['best', 'random']
         }
 
-        options = {'DT'}
+        options = {'Importance', 'DT'}
 
         dt_grid_result, dt_class, dt_auc, dt_probs, dt_preds, dt_score, dt_params, dt_features, dt_cc = evaluate_grid_model(
-            X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+            df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, dt_class, [])
         y_probs = functools.reduce(operator.iconcat, dt_probs, [])  # flatten the list of lists
@@ -340,10 +335,10 @@ if __name__ == '__main__':
         estimators.append(('LOGR', LogisticRegression(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'LOGR'}
+        options = {'Importance', 'LOGR'}
 
         log_grid_result, log_class, log_auc, log_probs, log_preds, log_score, log_params, log_features, log_cc = evaluate_grid_model(
-            X, Y, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
+            df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
         classes = functools.reduce(operator.iconcat, log_class, [])
         y_probs = functools.reduce(operator.iconcat, log_probs, [])  # flatten the list of lists

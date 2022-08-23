@@ -10,6 +10,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn import metrics
 
+from sklearn.feature_selection import RFE
+from sklearn.svm import LinearSVC
 from sklearn import tree
 
 from sklearn.linear_model import LogisticRegression
@@ -26,7 +28,7 @@ if __name__ == '__main__':
 
     Run = 1
 
-    filename = "sarcoidosis_experiment_2_normal_all"
+    filename = "sarcoidosis_experiment_3_normal_fuzzy_all"
     filename_dataset = "sn.csv"
     filename_crossval = "sn_cvi.mat"
     filename_matlab = "Exp_sarcoidose_sn.csv"
@@ -68,7 +70,7 @@ if __name__ == '__main__':
     matlab_cc_df = pd.read_csv(filename_matlab_cc, delimiter=',', encoding="utf-8-sig")
     bfp_cc = matlab_cc_df['BFP']
 
-    # Obtain the datset
+    # Obtain the dataset
     df = pd.read_csv(filename_dataset)
 
     cols = list(df.columns)
@@ -116,6 +118,10 @@ if __name__ == '__main__':
         },
     ]
     
+    mfs = LinearSVC(C=1, penalty="l1", dual=False, max_iter=5000)
+
+    feat_selection = RFE(mfs, step=1)
+    
     if Run == 1:
         seed = 7
         num_folds = 10
@@ -132,16 +138,18 @@ if __name__ == '__main__':
 
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('SVM', SVC(probability=True)))
         model = Pipeline(estimators)
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'SVM__C': [1, 2, 5, 7, 10, 50, 100, 200, 400],
             'SVM__gamma': [0.001, 0.01, 0.05, 0.1, 1],
             'SVM__kernel': ['rbf']
         }
 
-        options = { }
+        options = {'Importance', 'fuzzy'}
 
         svm_grid_result, svm_class, svm_auc, svm_probs, svm_preds, svm_score, svm_params, svm_features, svm_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -157,15 +165,17 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('KNN', KNeighborsClassifier(metric='manhattan')))
         model = Pipeline(estimators)
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'KNN__n_neighbors': [1, 3, 5, 7, 9, 11, 13],
             'KNN__weights': ['distance']
         }
 
-        options = { }
+        options = {'Importance', 'fuzzy'}
 
         knn_grid_result, knn_class, knn_auc, knn_probs, knn_preds, knn_score, knn_params, knn_features, knn_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -179,16 +189,18 @@ if __name__ == '__main__':
         print('-- RF MODEL --')
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'RF__n_estimators': [10, 30, 60, 100, 200, 400],
             'RF__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60]
         }
 
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('RF', RandomForestClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'Importance', 'fuzzy'}
 
         rf_grid_result, rf_class, rf_auc, rf_probs, rf_preds, rf_score, rf_params, rf_features, rf_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -202,6 +214,7 @@ if __name__ == '__main__':
         print('-- ADAB MODEL --')
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'ADAB__base_estimator__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'ADAB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
@@ -211,10 +224,11 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('ADAB', AdaBoostClassifier(base_estimator=DTC, random_state=seed)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'Importance', 'fuzzy'}
 
         adab_grid_result, adab_class, adab_auc, adab_probs, adab_preds, adab_score, adab_params, adab_features, adab_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -228,6 +242,7 @@ if __name__ == '__main__':
         print('-- LGB MODEL --')
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'LGB__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'LGB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
@@ -235,10 +250,11 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
-        estimators.append(('LGB', LGBMClassifier(random_state=seed)))
+        estimators.append(('fs', feat_selection))
+        estimators.append(('LGB', LGBMClassifier(random_state=seed, max_depth=0)))
         model = Pipeline(estimators)
 
-        options = { }
+        options = {'Importance', 'fuzzy'}
 
         lgb_grid_result, lgb_class, lgb_auc, lgb_probs, lgb_preds, lgb_score, lgb_params, lgb_features, lgb_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -252,14 +268,19 @@ if __name__ == '__main__':
         print('-- XGB MODEL --')
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'XGB__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'XGB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
 
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('XGB', XGBClassifier(random_state=seed)))
         model = Pipeline(estimators)
+        
+        options = {'Importance', 'fuzzy'}
+        
         xgb_grid_result, xgb_class, xgb_auc, xgb_probs, xgb_preds, xgb_score, xgb_params, xgb_features, xgb_cc = evaluate_grid_model(
                 df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
 
@@ -275,16 +296,18 @@ if __name__ == '__main__':
 
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('DT', tree.DecisionTreeClassifier(random_state=seed)))
         model = Pipeline(estimators)
 
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'DT__max_depth': [2, 3, 4, 5, 10, 50],
             'DT__criterion': ['gini', 'entropy', 'log_loss'],
             'DT__splitter': ['best', 'random']
         }
 
-        options = {'DT'}
+        options = {'Importance', 'DT', 'fuzzy'}
 
         dt_grid_result, dt_class, dt_auc, dt_probs, dt_preds, dt_score, dt_params, dt_features, dt_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
@@ -299,6 +322,7 @@ if __name__ == '__main__':
         #====================
         print('-- LOGISTIC REGRESSION MODEL --')
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
                       'LOGR__C': [0.001, 0.01, 0.1, 1, 2, 3, 5, 10],
                       'LOGR__penalty': ['l2']  #
 
@@ -307,10 +331,11 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
+        estimators.append(('fs', feat_selection))
         estimators.append(('LOGR', LogisticRegression(random_state=seed)))
         model = Pipeline(estimators)
 
-        options = {'LOGR'}
+        options = {'Importance', 'LOGR', 'fuzzy'}
 
         log_grid_result, log_class, log_auc, log_probs, log_preds, log_score, log_params, log_features, log_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)

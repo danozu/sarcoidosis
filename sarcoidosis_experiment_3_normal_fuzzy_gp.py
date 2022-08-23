@@ -6,6 +6,9 @@ from scipy.io import loadmat
 import functools  # flatten list of list
 import operator  # flatten List of list
 
+from sklearn.feature_selection import RFE
+from sklearn.svm import LinearSVC
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn import metrics
@@ -19,7 +22,7 @@ if __name__ == '__main__':
 
     Run = 1
 
-    filename = "sarcoidosis_experiment_2_normal_gp"
+    filename = "sarcoidosis_experiment_3_normal_fuzzy_gp"
     filename_dataset = "sn.csv"
     filename_crossval = "sn_cvi.mat"
     filename_matlab = "Exp_sarcoidose_sn.csv"
@@ -74,7 +77,10 @@ if __name__ == '__main__':
         }
     ]
     
-  
+    mfs = LinearSVC(C=1, penalty="l1", dual=False, max_iter=5000)
+
+    feat_selection = RFE(mfs, step=1)
+    
     if Run == 1:
         seed = 7
         num_folds = 10
@@ -100,6 +106,7 @@ if __name__ == '__main__':
         roc_auc = _Fitness(function=_roc_auc, greater_is_better=True)
         
         param_grid = {
+            'fs__n_features_to_select': [4, 8, 12],
             'GP__init_depth': [(2, 2), (2, 6)],
             'GP__population_size': [100, 300, 500, 1000, 3000],
             'GP__tournament_size': [2, 7, 20],
@@ -110,7 +117,8 @@ if __name__ == '__main__':
         # create pipeline
         estimators = []
         estimators.append(('standardize', StandardScaler()))
-        estimators.append(('GP', SymbolicClassifier(random_state=seed, feature_names=cols,
+        estimators.append(('fs', feat_selection))
+        estimators.append(('GP', SymbolicClassifier(random_state=seed, #feature_names=cols,
                                                     metric=roc_auc,
                                                     stopping_criteria=0.01, n_jobs=16,
                                                     p_subtree_mutation=0.01, 
@@ -125,7 +133,7 @@ if __name__ == '__main__':
 
         model = Pipeline(estimators)
 
-        options = {'GP'}
+        options = {'Importance', 'GP', 'fuzzy'} 
 
         gp_grid_result, gp_class, gp_auc, gp_probs, gp_preds, gp_score, gp_params, gp_features, gp_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)

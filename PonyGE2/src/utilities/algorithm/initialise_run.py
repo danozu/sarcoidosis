@@ -256,13 +256,6 @@ def return_attr_from_module(module_name, attr_name):
     :param attr_name: The name of the attribute.
     :return: The imported attribute from the module.
     """
-    import sys
-    print()
-    print()
-    print("directory:", sys.path[-1])
-    print()
-    print()
-    
     try:
         # Import module.
         module = importlib.import_module(module_name)

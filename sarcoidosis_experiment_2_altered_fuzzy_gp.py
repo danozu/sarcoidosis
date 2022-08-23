@@ -19,13 +19,13 @@ if __name__ == '__main__':
 
     Run = 1
 
-    filename = "sarcoidosis_experiment_2_normal_gp"
-    filename_dataset = "sn.csv"
-    filename_crossval = "sn_cvi.mat"
-    filename_matlab = "Exp_sarcoidose_sn.csv"
+    filename = "sarcoidosis_experiment_2_altered_fuzzy_gp"
+    filename_dataset = "sa.csv"
+    filename_crossval = "sa_cvi.mat"
+    filename_matlab = "Exp_sarcoidose_sa.csv"
     filename_matlab_cc = "cc_" + filename_matlab
     filename_matlab_p = "p_" + filename_matlab
-    crossval_field = 'SN_CrossValIndex'
+    crossval_field = 'SA_CrossValIndex'
     filename_csv = filename + ".csv"
     filename_roc = "roc_" + filename_csv
     filename_auc = "auc_" + filename_csv
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
         model = Pipeline(estimators)
 
-        options = {'GP'}
+        options = {'GP', 'fuzzy'} 
 
         gp_grid_result, gp_class, gp_auc, gp_probs, gp_preds, gp_score, gp_params, gp_features, gp_cc = evaluate_grid_model(
             df, crossval_index, model, param_grid, scoring, num_folds, seed, options, num_class)
