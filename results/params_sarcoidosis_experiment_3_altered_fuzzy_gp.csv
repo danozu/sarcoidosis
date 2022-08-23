@@ -1,0 +1,11 @@
+GP
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 500, 'GP__tournament_size': 2, 'fs__n_features_to_select': 36}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 12}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 24}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 20, 'fs__n_features_to_select': 24}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 300, 'GP__tournament_size': 2, 'fs__n_features_to_select': 36}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 24}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2, 'fs__n_features_to_select': 36}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 24}"
+"{'GP__generations': 50, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 36}"
+"{'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2, 'fs__n_features_to_select': 24}"

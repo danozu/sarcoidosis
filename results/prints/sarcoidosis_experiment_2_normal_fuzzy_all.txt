@@ -1,0 +1,333 @@
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- SVM MODEL --
+Number of experiments: 10
+Best: 0.800000 using {'SVM__C': 1, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf'}
+Best: 0.908333 using {'SVM__C': 200, 'SVM__gamma': 0.001, 'SVM__kernel': 'rbf'}
+Best: 0.833333 using {'SVM__C': 50, 'SVM__gamma': 0.001, 'SVM__kernel': 'rbf'}
+Best: 0.858333 using {'SVM__C': 1, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf'}
+Best: 0.883333 using {'SVM__C': 7, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf'}
+Best: 0.958333 using {'SVM__C': 400, 'SVM__gamma': 0.001, 'SVM__kernel': 'rbf'}
+Best: 0.966667 using {'SVM__C': 10, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf'}
+Best: 0.875000 using {'SVM__C': 2, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf'}
+Best: 0.850000 using {'SVM__C': 200, 'SVM__gamma': 0.001, 'SVM__kernel': 'rbf'}
+Best: 0.841667 using {'SVM__C': 5, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf'}
+AUC = 0.7949999999999999
+-- KNN MODEL --
+Number of experiments: 10
+Best: 0.750000 using {'KNN__n_neighbors': 3, 'KNN__weights': 'distance'}
+Best: 0.858333 using {'KNN__n_neighbors': 13, 'KNN__weights': 'distance'}
+Best: 0.800000 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance'}
+Best: 0.841667 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance'}
+Best: 0.875000 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance'}
+Best: 0.783333 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance'}
+Best: 0.891667 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance'}
+Best: 0.850000 using {'KNN__n_neighbors': 13, 'KNN__weights': 'distance'}
+Best: 0.783333 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance'}
+Best: 0.825000 using {'KNN__n_neighbors': 7, 'KNN__weights': 'distance'}
+AUC = 0.7291666666666667
+-- RF MODEL --
+Number of experiments: 10
+Best: 0.850000 using {'RF__max_depth': 3, 'RF__n_estimators': 200}
+Best: 0.900000 using {'RF__max_depth': 5, 'RF__n_estimators': 60}
+Best: 0.866667 using {'RF__max_depth': 1, 'RF__n_estimators': 30}
+Best: 0.933333 using {'RF__max_depth': 2, 'RF__n_estimators': 10}
+Best: 0.950000 using {'RF__max_depth': 4, 'RF__n_estimators': 10}
+Best: 0.825000 using {'RF__max_depth': 2, 'RF__n_estimators': 10}
+Best: 0.933333 using {'RF__max_depth': 4, 'RF__n_estimators': 60}
+Best: 0.916667 using {'RF__max_depth': 3, 'RF__n_estimators': 200}
+Best: 0.820833 using {'RF__max_depth': 5, 'RF__n_estimators': 10}
+Best: 0.883333 using {'RF__max_depth': 4, 'RF__n_estimators': 10}
+AUC = 0.8316666666666667
+-- ADAB MODEL --
+Number of experiments: 10
+Best: 0.841667 using {'ADAB__base_estimator__max_depth': 4, 'ADAB__n_estimators': 30}
+Best: 0.891667 using {'ADAB__base_estimator__max_depth': 3, 'ADAB__n_estimators': 60}
+Best: 0.841667 using {'ADAB__base_estimator__max_depth': 2, 'ADAB__n_estimators': 100}
+Best: 0.908333 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 400}
+Best: 0.883333 using {'ADAB__base_estimator__max_depth': 3, 'ADAB__n_estimators': 60}
+Best: 0.866667 using {'ADAB__base_estimator__max_depth': 3, 'ADAB__n_estimators': 60}
+Best: 0.925000 using {'ADAB__base_estimator__max_depth': 2, 'ADAB__n_estimators': 200}
+Best: 0.891667 using {'ADAB__base_estimator__max_depth': 2, 'ADAB__n_estimators': 400}
+Best: 0.791667 using {'ADAB__base_estimator__max_depth': 4, 'ADAB__n_estimators': 30}
+Best: 0.900000 using {'ADAB__base_estimator__max_depth': 2, 'ADAB__n_estimators': 100}
+AUC = 0.8183333333333334
+-- LGB MODEL --
+Number of experiments: 10
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.637500 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.683333 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.729167 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10}
+Best: 0.891667 using {'LGB__max_depth': 1, 'LGB__n_estimators': 200}
+Best: 0.791667 using {'LGB__max_depth': 1, 'LGB__n_estimators': 30}
+Best: 0.741667 using {'LGB__max_depth': 1, 'LGB__n_estimators': 400}
+AUC = 0.7633333333333333
+-- XGB MODEL --
+Number of experiments: 10
+Best: 0.875000 using {'XGB__max_depth': 3, 'XGB__n_estimators': 10}
+Best: 0.975000 using {'XGB__max_depth': 1, 'XGB__n_estimators': 30}
+Best: 0.904167 using {'XGB__max_depth': 3, 'XGB__n_estimators': 10}
+Best: 0.908333 using {'XGB__max_depth': 1, 'XGB__n_estimators': 60}
+Best: 0.916667 using {'XGB__max_depth': 2, 'XGB__n_estimators': 60}
+Best: 0.891667 using {'XGB__max_depth': 2, 'XGB__n_estimators': 30}
+Best: 0.925000 using {'XGB__max_depth': 2, 'XGB__n_estimators': 60}
+Best: 0.975000 using {'XGB__max_depth': 3, 'XGB__n_estimators': 100}
+Best: 0.891667 using {'XGB__max_depth': 3, 'XGB__n_estimators': 10}
+Best: 0.900000 using {'XGB__max_depth': 3, 'XGB__n_estimators': 30}
+AUC = 0.8483333333333334
+-- DT MODEL --
+Number of experiments: 10
+Best: 0.808333 using {'DT__criterion': 'entropy', 'DT__max_depth': 2, 'DT__splitter': 'best'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 27] <= -0.3878663033246994 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 22] <= 1.5596848130226135 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 39] <= 0.6419625282287598 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.837500 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'best'}
+The binary tree structure has 5 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.5504663288593292 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 43] <= -0.12190302088856697 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a leaf node.
+Best: 0.783333 using {'DT__criterion': 'entropy', 'DT__max_depth': 3, 'DT__splitter': 'random'}
+The binary tree structure has 11 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.4138529670277822 else to node 6.
+	node=1 is a split node: go to node 2 if X[:, 34] <= -0.034206866979722195 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a split node: go to node 4 if X[:, 43] <= -0.4704346983003658 else to node 5.
+			node=4 is a leaf node.
+			node=5 is a leaf node.
+	node=6 is a split node: go to node 7 if X[:, 17] <= 0.6952475597934265 else to node 10.
+		node=7 is a split node: go to node 8 if X[:, 38] <= 0.3475955410963537 else to node 9.
+			node=8 is a leaf node.
+			node=9 is a leaf node.
+		node=10 is a leaf node.
+Best: 0.804167 using {'DT__criterion': 'entropy', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.3049042034720557 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 36] <= -0.5308547860196646 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 0] <= -0.3601415935955873 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.812500 using {'DT__criterion': 'gini', 'DT__max_depth': 4, 'DT__splitter': 'random'}
+The binary tree structure has 19 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.32027398686659936 else to node 12.
+	node=1 is a split node: go to node 2 if X[:, 42] <= 0.4999456965523752 else to node 7.
+		node=2 is a split node: go to node 3 if X[:, 1] <= 0.7366029979274953 else to node 4.
+			node=3 is a leaf node.
+			node=4 is a split node: go to node 5 if X[:, 21] <= 0.5244640844465636 else to node 6.
+				node=5 is a leaf node.
+				node=6 is a leaf node.
+		node=7 is a split node: go to node 8 if X[:, 25] <= -0.33703829768750815 else to node 11.
+			node=8 is a split node: go to node 9 if X[:, 36] <= -0.2032903046326333 else to node 10.
+				node=9 is a leaf node.
+				node=10 is a leaf node.
+			node=11 is a leaf node.
+	node=12 is a split node: go to node 13 if X[:, 28] <= 0.7105857035546936 else to node 18.
+		node=13 is a split node: go to node 14 if X[:, 4] <= 0.08094824260867073 else to node 15.
+			node=14 is a leaf node.
+			node=15 is a split node: go to node 16 if X[:, 37] <= 1.0349858871705107 else to node 17.
+				node=16 is a leaf node.
+				node=17 is a leaf node.
+		node=18 is a leaf node.
+Best: 0.762500 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.2750081832811815 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 12] <= -0.949285832800846 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 24] <= 0.7007947954709319 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.841667 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.2939071660322319 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 12] <= -0.9692329177903771 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 6] <= 0.16214868955493977 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.800000 using {'DT__criterion': 'gini', 'DT__max_depth': 4, 'DT__splitter': 'random'}
+The binary tree structure has 15 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.23549102116201492 else to node 8.
+	node=1 is a split node: go to node 2 if X[:, 44] <= 2.588935125811729 else to node 7.
+		node=2 is a split node: go to node 3 if X[:, 19] <= 1.1201521510782748 else to node 6.
+			node=3 is a split node: go to node 4 if X[:, 7] <= 1.29756619095394 else to node 5.
+				node=4 is a leaf node.
+				node=5 is a leaf node.
+			node=6 is a leaf node.
+		node=7 is a leaf node.
+	node=8 is a split node: go to node 9 if X[:, 28] <= 0.9109824516921474 else to node 14.
+		node=9 is a split node: go to node 10 if X[:, 37] <= 1.0031725380800678 else to node 11.
+			node=10 is a leaf node.
+			node=11 is a split node: go to node 12 if X[:, 39] <= 0.5805021903747356 else to node 13.
+				node=12 is a leaf node.
+				node=13 is a leaf node.
+		node=14 is a leaf node.
+Best: 0.825000 using {'DT__criterion': 'gini', 'DT__max_depth': 3, 'DT__splitter': 'random'}
+The binary tree structure has 15 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.3236214450630235 else to node 8.
+	node=1 is a split node: go to node 2 if X[:, 12] <= -0.8899832205339333 else to node 5.
+		node=2 is a split node: go to node 3 if X[:, 10] <= 0.504510980869532 else to node 4.
+			node=3 is a leaf node.
+			node=4 is a leaf node.
+		node=5 is a split node: go to node 6 if X[:, 42] <= 0.3342637386626781 else to node 7.
+			node=6 is a leaf node.
+			node=7 is a leaf node.
+	node=8 is a split node: go to node 9 if X[:, 45] <= 0.6089322165548694 else to node 12.
+		node=9 is a split node: go to node 10 if X[:, 36] <= -0.49244496293056206 else to node 11.
+			node=10 is a leaf node.
+			node=11 is a leaf node.
+		node=12 is a split node: go to node 13 if X[:, 28] <= -0.8371046017368574 else to node 14.
+			node=13 is a leaf node.
+			node=14 is a leaf node.
+Best: 0.800000 using {'DT__criterion': 'gini', 'DT__max_depth': 5, 'DT__splitter': 'random'}
+The binary tree structure has 17 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.29091833582141113 else to node 10.
+	node=1 is a split node: go to node 2 if X[:, 12] <= -0.9858437349790157 else to node 9.
+		node=2 is a split node: go to node 3 if X[:, 10] <= 0.6290205685479817 else to node 4.
+			node=3 is a leaf node.
+			node=4 is a split node: go to node 5 if X[:, 1] <= 0.8788748245134191 else to node 6.
+				node=5 is a leaf node.
+				node=6 is a split node: go to node 7 if X[:, 43] <= 0.6733864400580867 else to node 8.
+					node=7 is a leaf node.
+					node=8 is a leaf node.
+		node=9 is a leaf node.
+	node=10 is a split node: go to node 11 if X[:, 31] <= 0.8209871144232581 else to node 16.
+		node=11 is a split node: go to node 12 if X[:, 34] <= -1.456735843644418 else to node 15.
+			node=12 is a split node: go to node 13 if X[:, 42] <= 0.8660061863304025 else to node 14.
+				node=13 is a leaf node.
+				node=14 is a leaf node.
+			node=15 is a leaf node.
+		node=16 is a leaf node.
+AUC = 0.7108333333333334
+-- LOGISTIC REGRESSION MODEL --
+Number of experiments: 10
+Best: 0.800000 using {'LOGR__C': 0.1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.01762916 -0.0072845  -0.02057932  0.04892084 -0.02997464 -0.00246413
+   0.05002642 -0.06373846  0.01082029 -0.0026962   0.03745518 -0.05116575
+   0.06977289 -0.12183843  0.02998968  0.02783962 -0.06267959  0.0501016
+  -0.10546442  0.06430589  0.01692126 -0.24382167  0.1700288   0.12747905
+   0.10850844 -0.06139433 -0.10877875 -0.24660346  0.2075352   0.09284399
+  -0.053036    0.0501865   0.01287844 -0.09474059  0.06900142  0.04787662
+  -0.16812591  0.15713029  0.04892084 -0.17595827  0.13664095  0.08748511
+  -0.18431432  0.19858419  0.00733049 -0.02975998 -0.11991225  0.18380048]]
+Best: 0.891667 using {'LOGR__C': 0.1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.03269009 -0.02566043 -0.01767013  0.04466286 -0.02212821 -0.00796419
+   0.06967532 -0.08895309  0.01476988  0.02784488  0.00183982 -0.04766948
+   0.04858423 -0.06742933  0.00852425  0.08473242 -0.11965241  0.04507844
+  -0.10258121  0.07990754 -0.00177431 -0.17794719  0.10416487  0.12438999
+   0.13168334 -0.08765318 -0.10663089 -0.24125761  0.20812408  0.08620453
+  -0.04667605  0.04206862  0.01480025 -0.10418554  0.09528126  0.03038638
+  -0.21578003  0.21428016  0.04466286 -0.21327195  0.1765825   0.08198099
+  -0.21405855  0.28734501 -0.05019164  0.00635254 -0.13743206  0.175282  ]]
+Best: 0.816667 using {'LOGR__C': 1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.04744223  0.06200096 -0.21186108  0.29406954 -0.61402005  0.3371239
+   0.26526655 -0.39125758  0.16094808  0.18480864 -0.03402189 -0.29033644
+   0.32835452 -0.51019881  0.10736968  0.12281756  0.21556724 -0.48286619
+  -0.89230975  0.31546291  0.29229435 -0.59235998  0.33686063  0.53163829
+   0.29022478 -0.17859022 -0.2540802  -0.7134232   0.44026879  0.57392605
+  -0.06095266  0.13410985 -0.12233263 -0.41079978  0.30786438  0.21200984
+  -0.40006235  0.19021804  0.50729534 -0.67127672  0.56548146  0.27589341
+  -0.55374704  0.48197847  0.14204115 -0.44605061 -0.09828598  0.74900362]]
+Best: 0.900000 using {'LOGR__C': 0.1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.01502237 -0.00996912 -0.01106635  0.04595345 -0.00969416 -0.02390641
+   0.03279323 -0.0274306  -0.01592597 -0.00772443  0.04966079 -0.0603972
+   0.0393531  -0.02950267 -0.01925372  0.00719642 -0.04041189  0.0470639
+  -0.08352942  0.05445699  0.00615892 -0.1889533   0.14768725  0.07576149
+   0.06528455  0.02914639 -0.15105259 -0.18470848  0.15932506  0.06941407
+  -0.04453414  0.06883855 -0.02770267 -0.08179779  0.09490134  0.0111639
+  -0.29193467  0.30260625  0.04595345 -0.24265676  0.21027812  0.08149526
+  -0.1768574   0.23161913 -0.05079723 -0.00057761 -0.12909586  0.16248865]]
+Best: 0.841667 using {'LOGR__C': 5, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.06041035  0.06307312 -0.2032886   0.16235051  0.30399668 -0.41082529
+   0.47815541 -0.66287985  0.18222735  0.14774139  0.18647408 -0.54165084
+   0.32922785 -0.40677513 -0.00190751  0.55434393 -0.69693732  0.18978922
+  -1.59832785  0.5496366   0.71853347 -1.76962627  1.20403978  0.97589586
+   0.5869976  -0.44000706 -0.39219477 -1.4018552   0.58054233  1.33640094
+   0.0513511   0.43650898 -0.67982709 -1.16749066  0.97463615  0.43450271
+  -0.72948048  0.72074577  0.16235051 -1.00389038  0.42439593  1.08133732
+  -1.35128072  0.66723779  1.08624543 -1.44109933  0.37557069  1.39425337]]
+Best: 0.883333 using {'LOGR__C': 10, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.05701435  0.39302717 -0.57473346  0.33030846 -0.13699301 -0.09158858
+  -0.41443338  1.83050506 -1.29621058  0.35153547 -0.43080908 -0.00263006
+   0.81475013 -1.32971793  0.32460566  0.1289849  -0.37722027  0.33030846
+  -2.33143985  0.04786452  1.57248122 -1.58739561  1.55150922  0.25142556
+   0.7273958  -0.60293976 -0.38026518 -2.00382593  1.64490375  0.85513163
+   0.31246317 -0.1967369  -0.26054964 -0.95014847  0.27229428  0.82250482
+  -1.07663667  1.00321855  0.33030846 -1.45138239  0.94544249  1.12101865
+  -1.23060876  1.14329132  0.36299352 -1.81542032  0.39862876  2.14251229]]
+Best: 0.916667 using {'LOGR__C': 3, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.11789366  0.02295407 -0.25628513  0.19762021 -0.02976597 -0.10510041
+   0.57294039 -0.87846232  0.36131663  0.04084013  0.23268689 -0.40668968
+   0.19547809 -0.05119596 -0.16863599  0.20397168 -0.3513637   0.20815468
+  -1.62190165  0.76262098  0.47208856 -1.09233945  0.71997877  0.63687799
+   0.45662762 -0.2467357  -0.47939098 -1.18450037  0.68360834  0.87228963
+   0.19392244 -0.17343339 -0.06192482 -0.79039505  0.80523485  0.15655753
+  -0.74337112  0.7007121   0.19762021 -0.84951851  0.47986975  0.70381969
+  -1.17376066  0.83919225  0.57647661 -0.85401548  0.0115295   1.24176001]]
+Best: 0.833333 using {'LOGR__C': 1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.13143328  0.00352612 -0.24408326  0.10712224 -0.29698744  0.2251581
+   0.25633695 -0.29883252  0.00559207  0.00855777  0.15036165 -0.23142415
+   0.25373717 -0.42282559  0.10464796  0.13629753 -0.22059196  0.11278777
+  -0.46762337  0.05646931  0.29437128 -0.73592356  0.65295974  0.18707431
+   0.25645521 -0.14187531 -0.26020228 -0.80142754  0.70660589  0.28841975
+   0.01768841 -0.11522942  0.13716989 -0.54093107  0.64253584  0.03752465
+  -0.47115417  0.46044932  0.10712224 -0.60915914  0.48934279  0.28311794
+  -0.57841452  0.61744175  0.0248521  -0.35934708 -0.17198203  0.76072087]]
+Best: 0.875000 using {'LOGR__C': 1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.1662746  -0.12983549 -0.09571603  0.11453925 -0.03351576 -0.04299982
+   0.33014626 -0.42641471  0.08190264  0.04528907  0.1602462  -0.31549389
+   0.1654138  -0.21637244  0.0133711   0.32062238 -0.41659448  0.12324091
+  -0.78764809  0.42645926  0.2284286  -0.78135375  0.52004678  0.4765907
+   0.35291948 -0.21488176 -0.32728644 -0.7054087   0.44394292  0.47542097
+  -0.04623322  0.15092984 -0.14373215 -0.4289181   0.39618421  0.13576273
+  -0.50897336  0.49987309  0.11453925 -0.52541782  0.3007391   0.43901589
+  -0.62441114  0.58478228  0.13750489 -0.36048969 -0.1470629   0.71671472]]
+Best: 0.866667 using {'LOGR__C': 1, 'LOGR__penalty': 'l2'}
+Coefficient of the features in the decision function:  [[ 0.1406263  -0.09189457 -0.11071123  0.11224018  0.03444715 -0.10755702
+   0.30919796 -0.36883833  0.02472731  0.03861827  0.1850438  -0.32240391
+   0.19141502 -0.24976334  0.02248206  0.29304948 -0.38347915  0.11999266
+  -0.85958039  0.36510708  0.2992633  -0.81042638  0.49955172  0.53828146
+   0.22385237 -0.22047862 -0.04108884 -0.6820847   0.42883768  0.46602276
+   0.02807439  0.04166889 -0.10253488 -0.45446043  0.43435016  0.10984727
+  -0.53563601  0.52820983  0.11224018 -0.5600659   0.34575078  0.41988855
+  -0.70177277  0.58356566  0.22482017 -0.3760375  -0.11403695  0.75381516]]
+AUC = 0.8133333333333332
+
+ 
+Warning
+Figures now render in the Plots pane by default. To make them also appear inline in the Console, uncheck "Mute Inline Plotting" under the Plots pane options menu.
+                SensLevel0          SensLevel1  ...  SpeCI_lo  SpeCI_hi
+SVM    0.2916666666666667  0.7916666666666666  ...    0.6432    0.9568
+KNN                 0.125               0.625  ...  0.543992  0.896008
+ADAB                0.375               0.875  ...  0.592583  0.927417
+RF    0.20833333333333334               0.875  ...  0.592583  0.927417
+LGB   0.20833333333333334  0.4583333333333333  ...  0.497141  0.862859
+XGB    0.5416666666666666               0.875  ...    0.6432    0.9568
+DT    0.13888888888888884  0.6822916666666666  ...  0.497141  0.862859
+LOGR   0.2916666666666667  0.7083333333333334  ...  0.543992  0.896008
+
+[8 rows x 12 columns]
+Elapsed time:  255.95872592926025

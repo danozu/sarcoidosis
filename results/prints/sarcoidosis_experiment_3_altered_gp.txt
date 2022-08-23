@@ -1,0 +1,81 @@
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- GP --
+Number of experiments: 10
+Best: 0.925000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 500, 'GP__tournament_size': 2, 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 5, 6, 7, 8, 12, 13
+Features Importances: False  True False  True False  True  True  True  True False False False
+  True  True False False
+Best individual: add(div(-0.896, -0.696), sub(X4, X5))
+Fitness: 0.8931818181818181
+Depth: 2
+Best: 1.000000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 4}
+Best Features: 4, 7, 8, 13
+Features Importances: False False False False  True False False  True  True False False False
+ False  True False False
+Best individual: add(mul(X1, X0), add(X1, X3))
+Fitness: 0.9659090909090908
+Depth: 2
+Best: 0.875000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 8}
+Best Features: 0, 5, 6, 7, 8, 9, 12, 15
+Features Importances:  True False False False False  True  True  True  True  True False False
+  True False False  True
+Best individual: sub(add(X3, X2), sub(X4, X3))
+Fitness: 0.9340909090909091
+Depth: 2
+Best: 0.975000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 7, 8, 12, 13, 14
+Features Importances: False False  True  True False  True False  True  True False False False
+  True  True  True False
+Best individual: sub(add(X5, sub(add(X3, sub(X6, X4)), X2)), X0)
+Fitness: 0.9675324675324675
+Depth: 5
+Best: 0.950000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best individual: add(div(div(add(mul(add(X4, X10), mul(X0, X6)), div(div(X9, X5), sub(X6, X4))), div(div(sub(X8, X3), sub(0.607, X1)), sub(mul(X6, X8), add(X8, X11)))), sub(sub(mul(sub(X7, X8), sub(X5, X2)), div(add(X7, X11), add(X10, X2))), sub(sub(add(X8, X10), div(X5, X3)), sub(div(X3, X10), div(X8, X4))))), sub(div(sub(mul(sub(X2, X7), mul(X0, X3)), mul(div(X0, X3), add(X3, X6))), sub(sub(div(X1, X5), div(0.372, X1)), sub(mul(X5, X0), add(X7, X7)))), mul(mul(div(sub(X0, X5), mul(X1, X8)), add(div(X3, X9), sub(-0.676, X4))), div(sub(add(X5, X7), sub(X3, X4)), add(div(X10, X5), add(X4, X7))))))
+Fitness: 0.8885281385281385
+Depth: 6
+Best: 0.933333 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 13
+Features Importances: False False  True  True False  True  True  True  True  True False False
+ False  True False False
+Best individual: sub(mul(X5, X7), div(X4, -0.593))
+Fitness: 0.9089026915113871
+Depth: 2
+Best: 0.891667 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best individual: sub(X4, mul(add(X9, add(X2, X3)), X10))
+Fitness: 0.9296066252587991
+Depth: 4
+Best: 0.925000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 300, 'GP__tournament_size': 2, 'fs__n_features_to_select': 4}
+Best Features: 0, 7, 8, 13
+Features Importances:  True False False False False False False  True  True False False False
+ False  True False False
+Best individual: sub(mul(X3, X2), div(X1, -0.268))
+Fitness: 0.917184265010352
+Depth: 2
+Best: 0.875000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2, 'fs__n_features_to_select': 8}
+Best Features: 0, 2, 5, 6, 7, 8, 12, 13
+Features Importances:  True False  True False False  True  True  True  True False False False
+  True  True False False
+Best individual: add(sub(X2, X5), add(X4, X0))
+Fitness: 0.8240165631469979
+Depth: 2
+Best: 0.925000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2, 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best individual: sub(X3, sub(mul(div(X2, X3), mul(sub(X0, add(X3, X2)), X2)), add(X2, X1)))
+Fitness: 0.906832298136646
+Depth: 6
+AUC = 0.751304347826087
+            SensLevel0          SensLevel1       AUC  AucCI_lo  AucCI_hi  ...  SenCI_lo  SenCI_hi OpSpe SpeCI_lo SpeCI_hi
+GP  0.4782608695652174  0.6086956521739131  0.751304  0.611412  0.891197  ...  0.409239  0.808153   0.8   0.6432   0.9568
+
+[1 rows x 12 columns]
+Elapsed time:  8343.623078584671

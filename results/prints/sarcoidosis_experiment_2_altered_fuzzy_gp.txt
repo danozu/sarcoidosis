@@ -1,0 +1,51 @@
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- GP --
+Number of experiments: 10
+Best: 0.850000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 300, 'GP__tournament_size': 2}
+Best individual: add(X32, X28)
+Fitness: 0.8840909090909091
+Depth: 1
+Best: 0.983333 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2}
+Best individual: sub(add(X22, X8), sub(X15, X43))
+Fitness: 0.9249999999999999
+Depth: 2
+Best: 0.825000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2}
+Best individual: sub(add(X22, X8), sub(X15, X43))
+Fitness: 0.875
+Depth: 2
+Best: 0.850000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2}
+Best individual: sub(X28, sub(X27, X27))
+Fitness: 0.843073593073593
+Depth: 2
+Best: 0.716667 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 300, 'GP__tournament_size': 2}
+Best individual: add(X32, X28)
+Fitness: 0.8593073593073594
+Depth: 1
+Best: 0.891667 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 500, 'GP__tournament_size': 2}
+Best individual: add(X28, X41)
+Fitness: 0.8778467908902692
+Depth: 1
+Best: 0.825000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2}
+Best individual: add(X23, X28)
+Fitness: 0.8923395445134575
+Depth: 1
+Best: 0.850000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 100, 'GP__tournament_size': 2}
+Best individual: sub(X28, sub(X27, X27))
+Fitness: 0.8333333333333334
+Depth: 2
+Best: 0.850000 using {'GP__generations': 5, 'GP__init_depth': (2, 2), 'GP__p_crossover': 0.8, 'GP__population_size': 1000, 'GP__tournament_size': 2}
+Best individual: add(X28, X23)
+Fitness: 0.8737060041407867
+Depth: 1
+Best: 0.825000 using {'GP__generations': 5, 'GP__init_depth': (2, 6), 'GP__p_crossover': 0.8, 'GP__population_size': 3000, 'GP__tournament_size': 2}
+Best individual: sub(sub(div(0.283, X31), mul(X20, X15)), sub(sub(X21, X38), add(X43, X43)))
+Fitness: 0.8840579710144928
+Depth: 3
+AUC = 0.7669565217391304
+            SensLevel0          SensLevel1       AUC  AucCI_lo  AucCI_hi  ...  SenCI_lo  SenCI_hi OpSpe  SpeCI_lo  SpeCI_hi
+GP  0.4782608695652174  0.7391304347826086  0.766957  0.630581  0.903332  ...  0.559672  0.918589  0.76  0.592583  0.927417
+
+[1 rows x 12 columns]
+Elapsed time:  3714.4167079925537

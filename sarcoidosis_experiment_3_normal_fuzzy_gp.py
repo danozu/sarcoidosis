@@ -106,7 +106,7 @@ if __name__ == '__main__':
         roc_auc = _Fitness(function=_roc_auc, greater_is_better=True)
         
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'GP__init_depth': [(2, 2), (2, 6)],
             'GP__population_size': [100, 300, 500, 1000, 3000],
             'GP__tournament_size': [2, 7, 20],
@@ -120,7 +120,7 @@ if __name__ == '__main__':
         estimators.append(('fs', feat_selection))
         estimators.append(('GP', SymbolicClassifier(random_state=seed, #feature_names=cols,
                                                     metric=roc_auc,
-                                                    stopping_criteria=0.01, n_jobs=16,
+                                                    stopping_criteria=0.01, n_jobs=-1,
                                                     p_subtree_mutation=0.01, 
                                                     p_point_replace=0.05, 
                                                     function_set=('add', 'sub', 'mul', 'div'),

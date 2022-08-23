@@ -139,7 +139,7 @@ if __name__ == '__main__':
         estimators = []
         estimators.append(('standardize', StandardScaler()))
         estimators.append(('fs', feat_selection))
-        estimators.append(('SVM', SVC(probability=True)))
+        estimators.append(('SVM', SVC(probability=True, random_state=seed)))
         model = Pipeline(estimators)
 
         param_grid = {

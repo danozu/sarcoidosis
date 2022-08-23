@@ -1,0 +1,523 @@
+seed: 7.000000
+n_iter: 30
+scoring: roc_auc
+-- SVM MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.908333 using {'SVM__C': 10, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 12}
+Best Features: 1, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False  True False  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 1.000000 using {'SVM__C': 2, 'SVM__gamma': 1, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 4}
+Best Features: 4, 7, 8, 13
+Features Importances: False False False False  True False False  True  True False False False
+ False  True False False
+Best: 0.908333 using {'SVM__C': 100, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 8}
+Best Features: 0, 5, 6, 7, 8, 9, 12, 15
+Features Importances:  True False False False False  True  True  True  True  True False False
+  True False False  True
+Best: 1.000000 using {'SVM__C': 100, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 7, 8, 12, 13, 14
+Features Importances: False False  True  True False  True False  True  True False False False
+  True  True  True False
+Best: 0.900000 using {'SVM__C': 200, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best: 0.933333 using {'SVM__C': 200, 'SVM__gamma': 0.01, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True  True False  True
+  True  True  True  True
+Best: 0.900000 using {'SVM__C': 100, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best: 0.941667 using {'SVM__C': 2, 'SVM__gamma': 0.1, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 4}
+Best Features: 0, 7, 8, 13
+Features Importances:  True False False False False False False  True  True False False False
+ False  True False False
+Best: 0.908333 using {'SVM__C': 50, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.875000 using {'SVM__C': 200, 'SVM__gamma': 0.05, 'SVM__kernel': 'rbf', 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+AUC = 0.7721739130434782
+-- KNN MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.925000 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 5, 6, 7, 8, 12, 13
+Features Importances: False  True False  True False  True  True  True  True False False False
+  True  True False False
+Best: 0.962500 using {'KNN__n_neighbors': 5, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 4, 7, 8, 10, 12, 13
+Features Importances: False  True False  True  True False False  True  True False  True False
+  True  True False False
+Best: 0.891667 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 0, 5, 6, 7, 8, 9, 12, 15
+Features Importances:  True False False False False  True  True  True  True  True False False
+  True False False  True
+Best: 0.966667 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 7, 8, 12, 13, 14
+Features Importances: False False  True  True False  True False  True  True False False False
+  True  True  True False
+Best: 0.875000 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 0, 3, 5, 6, 7, 8, 13, 14
+Features Importances:  True False False  True False  True  True  True  True False False False
+ False  True  True False
+Best: 0.908333 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 13
+Features Importances: False False  True  True False  True  True  True  True  True False False
+ False  True False False
+Best: 0.841667 using {'KNN__n_neighbors': 11, 'KNN__weights': 'distance', 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.891667 using {'KNN__n_neighbors': 13, 'KNN__weights': 'distance', 'fs__n_features_to_select': 12}
+Best Features: 0, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances:  True False False  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.858333 using {'KNN__n_neighbors': 5, 'KNN__weights': 'distance', 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.841667 using {'KNN__n_neighbors': 9, 'KNN__weights': 'distance', 'fs__n_features_to_select': 8}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 13
+Features Importances:  True False  True  True False  True  True  True  True False False False
+ False  True False False
+AUC = 0.8217391304347826
+-- RF MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.925000 using {'RF__max_depth': 3, 'RF__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 5, 6, 7, 8, 12, 13
+Features Importances: False  True False  True False  True  True  True  True False False False
+  True  True False False
+Best: 1.000000 using {'RF__max_depth': 2, 'RF__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 4, 7, 8, 10, 12, 13
+Features Importances: False  True False  True  True False False  True  True False  True False
+  True  True False False
+Best: 0.866667 using {'RF__max_depth': 2, 'RF__n_estimators': 60, 'fs__n_features_to_select': 8}
+Best Features: 0, 5, 6, 7, 8, 9, 12, 15
+Features Importances:  True False False False False  True  True  True  True  True False False
+  True False False  True
+Best: 0.975000 using {'RF__max_depth': 3, 'RF__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True False  True  True  True  True  True
+  True  True  True  True
+Best: 0.912500 using {'RF__max_depth': 5, 'RF__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 0, 3, 5, 6, 7, 8, 13, 14
+Features Importances:  True False False  True False  True  True  True  True False False False
+ False  True  True False
+Best: 0.950000 using {'RF__max_depth': 10, 'RF__n_estimators': 200, 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 13
+Features Importances: False False  True  True False  True  True  True  True  True False False
+ False  True False False
+Best: 0.850000 using {'RF__max_depth': 5, 'RF__n_estimators': 30, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.866667 using {'RF__max_depth': 3, 'RF__n_estimators': 30, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.908333 using {'RF__max_depth': 1, 'RF__n_estimators': 10, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.858333 using {'RF__max_depth': 4, 'RF__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+AUC = 0.8869565217391304
+-- ADAB MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.975000 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 100, 'fs__n_features_to_select': 12}
+Best Features: 1, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False  True False  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 1.000000 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 200, 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 4, 7, 8, 10, 12, 13
+Features Importances: False  True False  True  True False False  True  True False  True False
+  True  True False False
+Best: 0.933333 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 400, 'fs__n_features_to_select': 12}
+Best Features: 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Features Importances:  True False False False False  True  True  True  True  True  True  True
+  True  True  True  True
+Best: 1.000000 using {'ADAB__base_estimator__max_depth': 2, 'ADAB__n_estimators': 100, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True False  True  True  True  True  True
+  True  True  True  True
+Best: 0.950000 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 400, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.975000 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 200, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True  True False  True
+  True  True  True  True
+Best: 0.933333 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 6, 7, 8, 12, 13
+Features Importances: False False  True  True False  True  True  True  True False False False
+  True  True False False
+Best: 0.908333 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 0, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances:  True False False  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.916667 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 30, 'fs__n_features_to_select': 8}
+Best Features: 0, 2, 5, 6, 7, 8, 12, 13
+Features Importances:  True False  True False False  True  True  True  True False False False
+  True  True False False
+Best: 0.916667 using {'ADAB__base_estimator__max_depth': 1, 'ADAB__n_estimators': 400, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+AUC = 0.814782608695652
+-- LGB MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 4, 7, 8, 13
+Features Importances: False False False False  True False False  True  True False False False
+ False  True False False
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 0, 6, 7, 8
+Features Importances:  True False False False False False  True  True  True False False False
+ False False False False
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 3, 7, 8, 13
+Features Importances: False False False  True False False False  True  True False False False
+ False  True False False
+Best: 0.575000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True  True False  True
+  True  True  True  True
+Best: 0.525000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.575000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 0, 3, 5, 6, 7, 8, 13, 14
+Features Importances:  True False False  True False  True  True  True  True False False False
+ False  True  True False
+Best: 0.500000 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 4}
+Best Features: 2, 7, 8, 13
+Features Importances: False False  True False False False False  True  True False False False
+ False  True False False
+Best: 0.562500 using {'LGB__max_depth': 1, 'LGB__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 13
+Features Importances:  True False  True  True False  True  True  True  True False False False
+ False  True False False
+AUC = 0.7408695652173914
+-- XGB MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.900000 using {'XGB__max_depth': 1, 'XGB__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 1, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False  True False  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.975000 using {'XGB__max_depth': 1, 'XGB__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 1, 3, 4, 7, 8, 10, 12, 13
+Features Importances: False  True False  True  True False False  True  True False  True False
+  True  True False False
+Best: 0.983333 using {'XGB__max_depth': 3, 'XGB__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 0, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Features Importances:  True False False False False  True  True  True  True  True  True  True
+  True  True  True  True
+Best: 0.987500 using {'XGB__max_depth': 3, 'XGB__n_estimators': 30, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True False  True  True  True  True  True
+  True  True  True  True
+Best: 0.950000 using {'XGB__max_depth': 3, 'XGB__n_estimators': 60, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.987500 using {'XGB__max_depth': 1, 'XGB__n_estimators': 200, 'fs__n_features_to_select': 8}
+Best Features: 2, 3, 5, 6, 7, 8, 9, 13
+Features Importances: False False  True  True False  True  True  True  True  True False False
+ False  True False False
+Best: 0.941667 using {'XGB__max_depth': 3, 'XGB__n_estimators': 10, 'fs__n_features_to_select': 12}
+Best Features: 2, 3, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15
+Features Importances: False False  True  True False  True  True  True  True False  True  True
+  True  True  True  True
+Best: 0.908333 using {'XGB__max_depth': 2, 'XGB__n_estimators': 200, 'fs__n_features_to_select': 8}
+Best Features: 0, 3, 5, 6, 7, 8, 13, 14
+Features Importances:  True False False  True False  True  True  True  True False False False
+ False  True  True False
+Best: 0.950000 using {'XGB__max_depth': 2, 'XGB__n_estimators': 10, 'fs__n_features_to_select': 12}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 11, 12, 13, 14, 15
+Features Importances:  True False  True  True False  True  True  True  True False False  True
+  True  True  True  True
+Best: 0.920833 using {'XGB__max_depth': 2, 'XGB__n_estimators': 10, 'fs__n_features_to_select': 8}
+Best Features: 0, 2, 3, 5, 6, 7, 8, 13
+Features Importances:  True False  True  True False  True  True  True  True False False False
+ False  True False False
+AUC = 0.9147826086956522
+-- DT MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.800000 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'best', 'fs__n_features_to_select': 8}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 6] <= 0.44141145050525665 else to node 4.
+        node=1 is a split node: go to node 2 if X[:, 4] <= 0.37461671233177185 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a leaf node.
+        node=4 is a split node: go to node 5 if X[:, 4] <= 0.20118579268455505 else to node 6.
+                node=5 is a leaf node.
+                node=6 is a leaf node.
+Best: 0.916667 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'best', 'fs__n_features_to_select': 8}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 7] <= -0.33137236535549164 else to node 4.
+        node=1 is a split node: go to node 2 if X[:, 5] <= -1.1403570771217346 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a leaf node.
+        node=4 is a split node: go to node 5 if X[:, 3] <= -0.7835032641887665 else to node 6.
+                node=5 is a leaf node.
+                node=6 is a leaf node.
+Best: 0.875000 using {'DT__criterion': 'gini', 'DT__max_depth': 4, 'DT__splitter': 'best', 'fs__n_features_to_select': 12}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 5] <= -0.15155315771698952 else to node 8.
+        node=1 is a split node: go to node 2 if X[:, 8] <= 0.4172110855579376 else to node 5.
+                node=2 is a split node: go to node 3 if X[:, 8] <= -1.0136837363243103 else to node 4.
+                        node=3 is a leaf node.
+                        node=4 is a leaf node.
+                node=5 is a split node: go to node 6 if X[:, 8] <= 0.8413465619087219 else to node 7.
+                        node=6 is a leaf node.
+                        node=7 is a leaf node.
+        node=8 is a split node: go to node 9 if X[:, 8] <= -0.016177114099264145 else to node 12.
+                node=9 is a split node: go to node 10 if X[:, 2] <= -0.77768275141716 else to node 11.
+                        node=10 is a leaf node.
+                        node=11 is a leaf node.
+                node=12 is a leaf node.
+Best: 0.879167 using {'DT__criterion': 'entropy', 'DT__max_depth': 2, 'DT__splitter': 'best', 'fs__n_features_to_select': 12}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 5] <= -0.17784376442432404 else to node 4.
+        node=1 is a split node: go to node 2 if X[:, 8] <= 0.3962632715702057 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a leaf node.
+        node=4 is a split node: go to node 5 if X[:, 3] <= 0.1970066800713539 else to node 6.
+                node=5 is a leaf node.
+                node=6 is a leaf node.
+Best: 0.837500 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'best', 'fs__n_features_to_select': 12}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 9] <= -0.576876163482666 else to node 4.
+        node=1 is a split node: go to node 2 if X[:, 8] <= -1.0713967084884644 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a leaf node.
+        node=4 is a split node: go to node 5 if X[:, 5] <= -0.8104090094566345 else to node 6.
+                node=5 is a leaf node.
+                node=6 is a leaf node.
+Best: 0.875000 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'best', 'fs__n_features_to_select': 12}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 6] <= -0.06667542736977339 else to node 4.
+        node=1 is a split node: go to node 2 if X[:, 8] <= 0.5003584027290344 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a leaf node.
+        node=4 is a split node: go to node 5 if X[:, 4] <= 0.3319791257381439 else to node 6.
+                node=5 is a leaf node.
+                node=6 is a leaf node.
+Best: 0.904167 using {'DT__criterion': 'gini', 'DT__max_depth': 3, 'DT__splitter': 'random', 'fs__n_features_to_select': 12}
+The binary tree structure has 11 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 4] <= 0.21820225580196517 else to node 6.
+        node=1 is a split node: go to node 2 if X[:, 4] <= -0.815019064613108 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a split node: go to node 4 if X[:, 5] <= 0.5928682888735783 else to node 5.
+                        node=4 is a leaf node.
+                        node=5 is a leaf node.
+        node=6 is a split node: go to node 7 if X[:, 7] <= -0.7734929050710566 else to node 8.
+                node=7 is a leaf node.
+                node=8 is a split node: go to node 9 if X[:, 4] <= 0.31967827923374437 else to node 10.
+                        node=9 is a leaf node.
+                        node=10 is a leaf node.
+Best: 0.816667 using {'DT__criterion': 'entropy', 'DT__max_depth': 4, 'DT__splitter': 'random', 'fs__n_features_to_select': 8}
+The binary tree structure has 15 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 4] <= 0.24942179423984667 else to node 8.
+        node=1 is a split node: go to node 2 if X[:, 3] <= 1.1193689668332287 else to node 7.
+                node=2 is a split node: go to node 3 if X[:, 7] <= -0.4754005379611277 else to node 4.
+                        node=3 is a leaf node.
+                        node=4 is a split node: go to node 5 if X[:, 4] <= -1.013254347321748 else to node 6.
+                                node=5 is a leaf node.
+                                node=6 is a leaf node.
+                node=7 is a leaf node.
+        node=8 is a split node: go to node 9 if X[:, 6] <= -0.6267703043045055 else to node 10.
+                node=9 is a leaf node.
+                node=10 is a split node: go to node 11 if X[:, 0] <= 0.9966448244692612 else to node 14.
+                        node=11 is a split node: go to node 12 if X[:, 1] <= 0.6746660609848255 else to node 13.
+                                node=12 is a leaf node.
+                                node=13 is a leaf node.
+                        node=14 is a leaf node.
+Best: 0.858333 using {'DT__criterion': 'gini', 'DT__max_depth': 3, 'DT__splitter': 'best', 'fs__n_features_to_select': 12}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 8] <= 0.227167509496212 else to node 8.
+        node=1 is a split node: go to node 2 if X[:, 8] <= -1.034958302974701 else to node 5.
+                node=2 is a split node: go to node 3 if X[:, 2] <= -0.23101560026407242 else to node 4.
+                        node=3 is a leaf node.
+                        node=4 is a leaf node.
+                node=5 is a split node: go to node 6 if X[:, 5] <= 0.49822236597537994 else to node 7.
+                        node=6 is a leaf node.
+                        node=7 is a leaf node.
+        node=8 is a split node: go to node 9 if X[:, 5] <= -0.9032636284828186 else to node 10.
+                node=9 is a leaf node.
+                node=10 is a split node: go to node 11 if X[:, 6] <= -0.35791386663913727 else to node 12.
+                        node=11 is a leaf node.
+                        node=12 is a leaf node.
+Best: 0.829167 using {'DT__criterion': 'entropy', 'DT__max_depth': 3, 'DT__splitter': 'random', 'fs__n_features_to_select': 8}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 5] <= -0.5349894750280951 else to node 6.
+        node=1 is a split node: go to node 2 if X[:, 5] <= -0.8124947221482006 else to node 3.
+                node=2 is a leaf node.
+                node=3 is a split node: go to node 4 if X[:, 0] <= -0.2524107603295037 else to node 5.
+                        node=4 is a leaf node.
+                        node=5 is a leaf node.
+        node=6 is a split node: go to node 7 if X[:, 2] <= -0.1272500936658849 else to node 10.
+                node=7 is a split node: go to node 8 if X[:, 4] <= 0.10547151284631179 else to node 9.
+                        node=8 is a leaf node.
+                        node=9 is a leaf node.
+                node=10 is a split node: go to node 11 if X[:, 0] <= 1.1602148098106693 else to node 12.
+                        node=11 is a leaf node.
+                        node=12 is a leaf node.
+AUC = 0.7504347826086957
+-- LOGISTIC REGRESSION MODEL --
+              R0           S         Rm         R4        R20  ...     RpeRIC     RteRIC      IeRIC      CeRIC      class
+count  48.000000   48.000000  48.000000  48.000000  48.000000  ...  48.000000  48.000000  48.000000  48.000000  48.000000
+mean    3.113403  -26.217986   2.851222   2.982453   2.726188  ...   0.643050   3.227693   0.006992   0.015377   0.479167
+std     1.317679   38.024910   1.079521   1.218458   0.978479  ...   0.587952   1.095770   0.003614   0.007430   0.504852
+min     1.413040 -156.960340   1.450290   1.260750   1.352250  ...   0.000000   1.908570   0.000000   0.005070   0.000000
+25%     2.133522  -41.730380   2.055083   2.093278   1.938382  ...   0.059635   2.400403   0.004185   0.009705   0.000000
+50%     2.834275  -18.456170   2.564010   2.714500   2.428985  ...   0.514900   2.925135   0.006870   0.013120   0.000000
+75%     3.870902   -4.959940   3.373353   3.652035   3.294805  ...   0.969070   3.852772   0.009100   0.019680   1.000000
+max     6.315620   32.284590   5.655210   6.321420   5.352570  ...   2.446710   5.971490   0.017290   0.035450   1.000000
+
+[8 rows x 17 columns]
+Number of experiments: 10
+Best: 0.900000 using {'LOGR__C': 3, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 8}
+Coefficient of the features in the decision function:  [[ 0.50630364 -1.39625775 -0.66944209  0.06494255  2.57126377 -1.72728418
+   0.84115304  0.77090467]]
+Best: 0.933333 using {'LOGR__C': 0.001, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 12}
+Coefficient of the features in the decision function:  [[-0.01053301  0.01119908  0.00871796  0.01319555 -0.0092968   0.01129337
+   0.0109737   0.00876249  0.01114656  0.01250504 -0.00413584 -0.00975592]]
+Best: 0.900000 using {'LOGR__C': 5, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 4}
+Coefficient of the features in the decision function:  [[-0.77873047  1.04687049  3.08316104 -2.15409773]]
+Best: 0.975000 using {'LOGR__C': 1, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 8}
+Coefficient of the features in the decision function:  [[-0.23462506 -0.42914281 -0.46291254  1.53393597 -0.86366561  0.93181813
+   0.73649329  0.27210092]]
+Best: 0.908333 using {'LOGR__C': 3, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 4}
+Coefficient of the features in the decision function:  [[-2.00389705  2.16132314 -1.18368853  1.43882563]]
+Best: 0.908333 using {'LOGR__C': 5, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 4}
+Coefficient of the features in the decision function:  [[-2.93115262  2.58472115 -1.9530342   1.98642408]]
+Best: 0.866667 using {'LOGR__C': 5, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 12}
+Coefficient of the features in the decision function:  [[-1.31435293 -1.32697461 -0.68386022  0.73257928  3.07468287 -1.73580564
+   0.05870044  0.71287246  0.86157939  1.0399373  -0.310398   -0.37925606]]
+Best: 0.908333 using {'LOGR__C': 10, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 12}
+Coefficient of the features in the decision function:  [[-2.19342610e+00 -2.14243250e+00 -5.43503576e-01  1.78814037e+00
+   4.85515263e+00 -2.49516354e+00 -5.49178655e-02  1.33380285e+00
+   1.00207093e+00  1.62859388e+00 -7.45617977e-01 -2.59113256e-04]]
+Best: 0.875000 using {'LOGR__C': 10, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 4}
+Coefficient of the features in the decision function:  [[-3.17124288  2.2895663  -2.06322091  2.4322471 ]]
+Best: 0.833333 using {'LOGR__C': 0.1, 'LOGR__penalty': 'l2', 'fs__n_features_to_select': 4}
+Coefficient of the features in the decision function:  [[ 0.10458953  0.49796431 -0.31257948  0.27128519]]
+AUC = 0.8695652173913043
+               SensLevel0          SensLevel1       AUC  AucCI_lo  ...  SenCI_hi OpSpe  SpeCI_lo  SpeCI_hi
+SVM   0.21739130434782608   0.782608695652174  0.772174  0.637032  ...  0.951181  0.76  0.592583  0.927417
+KNN    0.6521739130434783   0.782608695652174  0.821739  0.699959  ...  0.951181  0.76  0.592583  0.927417
+ADAB   0.6521739130434783  0.8695652173913043  0.814783  0.690935  ...  0.980994  0.84   0.69629   0.98371
+RF      0.782608695652174  0.8695652173913043  0.886957   0.78835  ...  0.980994  0.88  0.752615  1.007385
+LGB   0.23913043478260868  0.6956521739130435   0.74087  0.598779  ...  0.883702  0.84   0.69629   0.98371
+XGB    0.7391304347826086  0.8695652173913043  0.914783  0.828806  ...  1.007204  0.84   0.69629   0.98371
+DT    0.21739130434782603  0.5434782608695652  0.750435  0.610354  ...  0.980994  0.72  0.543992  0.896008
+LOGR   0.7391304347826086  0.8260869565217391  0.869565   0.76402  ...  0.918589  0.92  0.813653  1.026347
+
+[8 rows x 12 columns]
+Elapsed time:  20559.281832933426

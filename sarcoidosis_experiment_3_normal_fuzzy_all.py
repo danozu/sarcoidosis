@@ -139,11 +139,11 @@ if __name__ == '__main__':
         estimators = []
         estimators.append(('standardize', StandardScaler()))
         estimators.append(('fs', feat_selection))
-        estimators.append(('SVM', SVC(probability=True)))
+        estimators.append(('SVM', SVC(probability=True, random_state=seed)))
         model = Pipeline(estimators)
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'SVM__C': [1, 2, 5, 7, 10, 50, 100, 200, 400],
             'SVM__gamma': [0.001, 0.01, 0.05, 0.1, 1],
             'SVM__kernel': ['rbf']
@@ -170,7 +170,7 @@ if __name__ == '__main__':
         model = Pipeline(estimators)
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'KNN__n_neighbors': [1, 3, 5, 7, 9, 11, 13],
             'KNN__weights': ['distance']
         }
@@ -189,7 +189,7 @@ if __name__ == '__main__':
         print('-- RF MODEL --')
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'RF__n_estimators': [10, 30, 60, 100, 200, 400],
             'RF__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60]
         }
@@ -214,7 +214,7 @@ if __name__ == '__main__':
         print('-- ADAB MODEL --')
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'ADAB__base_estimator__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'ADAB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
@@ -242,7 +242,7 @@ if __name__ == '__main__':
         print('-- LGB MODEL --')
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'LGB__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'LGB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
@@ -268,7 +268,7 @@ if __name__ == '__main__':
         print('-- XGB MODEL --')
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'XGB__max_depth': [1, 2, 3, 4, 5, 10, 15, 30, 60],
             'XGB__n_estimators': [10, 30, 60, 100, 200, 400]
         }
@@ -301,7 +301,7 @@ if __name__ == '__main__':
         model = Pipeline(estimators)
 
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
             'DT__max_depth': [2, 3, 4, 5, 10, 50],
             'DT__criterion': ['gini', 'entropy', 'log_loss'],
             'DT__splitter': ['best', 'random']
@@ -322,7 +322,7 @@ if __name__ == '__main__':
         #====================
         print('-- LOGISTIC REGRESSION MODEL --')
         param_grid = {
-            'fs__n_features_to_select': [4, 8, 12],
+            'fs__n_features_to_select': [12, 24, 36],
                       'LOGR__C': [0.001, 0.01, 0.1, 1, 2, 3, 5, 10],
                       'LOGR__penalty': ['l2']  #
 

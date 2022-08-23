@@ -21,9 +21,6 @@ def evaluate_grid_model(df, crossval_index, model, param_grid, scoring, num_fold
         array = df.values
         X = array[:, 0:16]
         Y = array[:, 16]
-        
-        print(df.describe())
-        df['class'].value_counts().plot(kind='bar', title='Count (class)')
     
     probs_model = []
     preds_model = []
@@ -60,7 +57,7 @@ def evaluate_grid_model(df, crossval_index, model, param_grid, scoring, num_fold
 
         kfold = StratifiedKFold(n_splits=num_folds, shuffle=True, random_state=seed)
 
-        grid = GridSearchCV(estimator=model, param_grid=param_grid, scoring=scoring, cv=kfold, refit='True', n_jobs=16)
+        grid = GridSearchCV(estimator=model, param_grid=param_grid, scoring=scoring, cv=kfold, refit='True', n_jobs=-1)
         grid_result = grid.fit(X_train, Y_train)
         print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
 
