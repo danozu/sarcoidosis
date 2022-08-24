@@ -103,7 +103,7 @@ if __name__ == '__main__':
             'GP__init_depth': [(2, 2), (2, 6)],
             'GP__population_size': [100, 300, 500, 1000, 3000],
             'GP__tournament_size': [2, 7, 20],
-            'GP__generations': [5, 20, 50, 100, 200],
+            'GP__generations': [20, 50, 100, 200],
             'GP__p_crossover': [0.8]
                       }
 
