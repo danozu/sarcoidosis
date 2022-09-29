@@ -1,0 +1,11 @@
+Exp 1: sub(Fr, Cdin)
+Exp 2: sub(sub(R4-R20, 0.528), add(Cdin, S))
+Exp 3: sub(Fr, Cdin)
+Exp 4: sub(sub(Fr, Rm), sub(Cdin, Fr))
+Exp 5: sub(Fr, Cdin)
+Exp 6: div(mul(Ax, RteRIC), add(Rm, Z4))
+Exp 7: sub(sub(Fr, Rm), sub(Cdin, Fr))
+Exp 8: sub(sub(Fr, Rm), sub(Cdin, Fr))
+Exp 9: sub(sub(Fr, Rm), sub(Cdin, Fr))
+Exp 10: sub(sub(Fr, Rm), sub(Cdin, Fr))
+AUC: 0.74

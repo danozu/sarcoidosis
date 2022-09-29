@@ -1,0 +1,131 @@
+-- DT MODEL --
+Number of experiments: 10
+Best: 0.779167 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 21] <= 0.10354250169697998 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 30] <= 0.9590794234122861 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 4] <= -1.044377664220961 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.904167 using {'DT__criterion': 'entropy', 'DT__max_depth': 4, 'DT__splitter': 'random'}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 5] <= -0.7935966484096103 else to node 2.
+	node=1 is a leaf node.
+	node=2 is a split node: go to node 3 if X[:, 40] <= 0.08015248931536578 else to node 8.
+		node=3 is a split node: go to node 4 if X[:, 10] <= -1.678961278665393 else to node 5.
+			node=4 is a leaf node.
+			node=5 is a split node: go to node 6 if X[:, 0] <= 0.3440752018343495 else to node 7.
+				node=6 is a leaf node.
+				node=7 is a leaf node.
+		node=8 is a split node: go to node 9 if X[:, 19] <= 0.609617121964114 else to node 12.
+			node=9 is a split node: go to node 10 if X[:, 25] <= 0.2552887551317835 else to node 11.
+				node=10 is a leaf node.
+				node=11 is a leaf node.
+			node=12 is a leaf node.
+Best: 0.775000 using {'DT__criterion': 'entropy', 'DT__max_depth': 3, 'DT__splitter': 'random'}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.5910217671326614 else to node 8.
+	node=1 is a split node: go to node 2 if X[:, 28] <= 0.009419164637376465 else to node 5.
+		node=2 is a split node: go to node 3 if X[:, 34] <= 0.017030851817663728 else to node 4.
+			node=3 is a leaf node.
+			node=4 is a leaf node.
+		node=5 is a split node: go to node 6 if X[:, 42] <= 0.46291887078261396 else to node 7.
+			node=6 is a leaf node.
+			node=7 is a leaf node.
+	node=8 is a split node: go to node 9 if X[:, 24] <= -0.09365076118115123 else to node 10.
+		node=9 is a leaf node.
+		node=10 is a split node: go to node 11 if X[:, 34] <= -0.7216368461260756 else to node 12.
+			node=11 is a leaf node.
+			node=12 is a leaf node.
+Best: 0.800000 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.5998229639965209 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 28] <= -0.038918258756635904 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 30] <= 1.4263132727716301 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.825000 using {'DT__criterion': 'gini', 'DT__max_depth': 3, 'DT__splitter': 'best'}
+The binary tree structure has 11 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 27] <= -0.054559445939958096 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 16] <= 1.4528287649154663 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 37] <= 1.101449429988861 else to node 8.
+		node=5 is a split node: go to node 6 if X[:, 37] <= -1.2257859110832214 else to node 7.
+			node=6 is a leaf node.
+			node=7 is a leaf node.
+		node=8 is a split node: go to node 9 if X[:, 33] <= 0.18160345405340195 else to node 10.
+			node=9 is a leaf node.
+			node=10 is a leaf node.
+Best: 0.795833 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.5106543250840587 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 43] <= 0.673751903813911 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 30] <= 1.3859948930761097 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.775000 using {'DT__criterion': 'entropy', 'DT__max_depth': 3, 'DT__splitter': 'best'}
+The binary tree structure has 9 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 27] <= 0.10101866722106934 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 40] <= 1.8809568881988525 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 43] <= 0.2682838961482048 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a split node: go to node 7 if X[:, 21] <= 0.8528863191604614 else to node 8.
+			node=7 is a leaf node.
+			node=8 is a leaf node.
+Best: 0.808333 using {'DT__criterion': 'gini', 'DT__max_depth': 2, 'DT__splitter': 'random'}
+The binary tree structure has 7 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 21] <= 0.08038939992509153 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 24] <= -1.4180852282592586 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 36] <= -0.5566609378585194 else to node 6.
+		node=5 is a leaf node.
+		node=6 is a leaf node.
+Best: 0.833333 using {'DT__criterion': 'gini', 'DT__max_depth': 3, 'DT__splitter': 'random'}
+The binary tree structure has 13 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 39] <= 0.5724786006048637 else to node 8.
+	node=1 is a split node: go to node 2 if X[:, 28] <= -0.009397849819641202 else to node 5.
+		node=2 is a split node: go to node 3 if X[:, 43] <= 0.2741616369948261 else to node 4.
+			node=3 is a leaf node.
+			node=4 is a leaf node.
+		node=5 is a split node: go to node 6 if X[:, 5] <= -0.630651994741574 else to node 7.
+			node=6 is a leaf node.
+			node=7 is a leaf node.
+	node=8 is a split node: go to node 9 if X[:, 30] <= 1.455275263643501 else to node 12.
+		node=9 is a split node: go to node 10 if X[:, 13] <= -0.9017924160395874 else to node 11.
+			node=10 is a leaf node.
+			node=11 is a leaf node.
+		node=12 is a leaf node.
+Best: 0.825000 using {'DT__criterion': 'gini', 'DT__max_depth': 5, 'DT__splitter': 'best'}
+The binary tree structure has 11 nodes and has the following tree structure:
+
+node=0 is a split node: go to node 1 if X[:, 27] <= 0.02871482726186514 else to node 4.
+	node=1 is a split node: go to node 2 if X[:, 40] <= 1.7569937109947205 else to node 3.
+		node=2 is a leaf node.
+		node=3 is a leaf node.
+	node=4 is a split node: go to node 5 if X[:, 36] <= -0.8872300088405609 else to node 8.
+		node=5 is a split node: go to node 6 if X[:, 19] <= 0.6994592547416687 else to node 7.
+			node=6 is a leaf node.
+			node=7 is a leaf node.
+		node=8 is a split node: go to node 9 if X[:, 37] <= -1.3058494329452515 else to node 10.
+			node=9 is a leaf node.
+			node=10 is a leaf node.
+AUC = 0.662608695652174

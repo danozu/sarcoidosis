@@ -1,0 +1,11 @@
+Exp 1: mul(0.326, Ax)
+Exp 2: add(Z4, Ax)
+Exp 3: add(add(Ax, Rm), RpeRIC)
+Exp 4: mul(mul(RteRIC, Ax), sub(Rm, 0.461))
+Exp 5: div(mul(Ax, RteRIC), add(ReRIC, RpeRIC))
+Exp 6: mul(mul(RteRIC, Ax), sub(Rm, 0.461))
+Exp 7: mul(mul(RteRIC, Ax), sub(Rm, 0.461))
+Exp 8: add(add(div(RpeRIC, RpeRIC), add(Ax, RteRIC)), sub(sub(Ax, -0.447), mul(R20, CeRIC)))
+Exp 9: div(RteRIC, div(Ax, ReRIC))
+Exp 10: mul(mul(RteRIC, Ax), sub(Rm, 0.461))
+AUC: 0.75
